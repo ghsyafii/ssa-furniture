@@ -27,6 +27,17 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes
 
+//main index
 app.get('/', (req, res) => {
     res.render('index', { title: 'Home'})
+});
+
+//about
+app.get('/about', (req, res) => {
+    res.render('about', { title: 'About' });
+});
+
+//contact
+app.get('/contact', (req, res) => {
+    res.render('contact', { title: 'Contact' });
 });
