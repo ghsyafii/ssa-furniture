@@ -26,3 +26,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 
 //routes
+
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Home'})
+});
