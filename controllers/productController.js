@@ -42,7 +42,7 @@ const product_delete = (req,res) => {
     const id = req.params.id;
     Product.findByIdAndDelete(id)
         .then(result => {
-            res.json({ redirect: '/products' })
+            res.json({ redirect: 'products/products-display' })
         })
         .catch(err => console.log(err))
 }
