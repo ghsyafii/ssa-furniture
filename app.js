@@ -7,6 +7,17 @@ const app = express();
 
 //connect to MongoDB
 
+const dbURI = 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority'
+
+//connect mongoose
+
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true })
+    .then((result) => {
+        app.listen(3000);
+        console.log('connected to db')
+    })
+    .catch((err) => console.log(err));
+
 //register view engine
 
 app.set('view engine', 'ejs');
