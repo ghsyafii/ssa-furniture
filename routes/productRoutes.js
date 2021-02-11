@@ -8,6 +8,10 @@ const productController = require('../controllers/productController');
 //blog routes
 router.get('/products-display', productController.product_index);
 
+router.get('/cart', (req, res) => {
+    res.render('products/cart', { title: 'Cart' });
+})
+
 router.post('/', productController.product_create_post);
 
 router.get('/create', productController.product_create_get);
