@@ -6,21 +6,23 @@ const router = express.Router();
 const productController = require('../controllers/productController');
 
 //blog routes
-router.get('/', productController.product_index);
+router.get('/products-display', productController.product_index);
 
-router.get('/cart', productController.cart_page);
+router.get('/cart', (req, res) => {
+    res.render('products/cart', { title: 'Cart' });
+})
 
-// router.post('/', blogController.blog_create_post);
-//
-// router.get('/create', blogController.blog_create_get);
-//
-// //GET: Post by ID (include : in front of route parameter
-//
-// router.get('/:id', blogController.blog_details);
-//
-// //delete
-// router.delete('/:id', blogController.blog_delete)
-//
-// //export router
+router.post('/', productController.product_create_post);
+
+router.get('/create', productController.product_create_get);
+
+//GET: Post by ID (include : in front of route parameter
+
+router.get('/:id', productController.product_details);
+
+//delete
+router.delete('/:id', productController.product_delete)
+
+//export router
 
 module.exports = router;

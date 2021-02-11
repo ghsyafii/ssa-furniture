@@ -5,10 +5,33 @@
 
 <body>
 
-<%- include('../partials/nav.ejs') %>
+<%- include('../partials/nav-products.ejs') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <h1>Cart</h1>
+    </div>
+</div>
+
+<div class="container-fluid card-horizontal">
+    <div class="row col-12 mt-3" id="items-container">
+
+    </div>
+</div>
+
+<!-- horizontal end-->
+<div class="totalPriceBox">
+    <h5>Total Price:</h5>
+    <p class="totalPrice"></p>
+
+</div>
 
 <div>
+    <button class="btn btn-secondary" onclick="ClearStorage()">Clear Cart</button>
+    <button class="btn btn-info"><a href="form.html">Check Out</a></button>
 </div>
+
+<div id="confirmclear"></div>
 
 <%- include('../partials/login-modal.ejs') %>
 
