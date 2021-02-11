@@ -52,3 +52,8 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact' });
 });
+
+//404
+app.use((req, res) => {
+    res.status(404).render('404', { title: '404' });
+})
