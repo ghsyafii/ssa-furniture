@@ -53,6 +53,9 @@ app.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact' });
 });
 
+//product routes
+app.use('/products', productRoutes);
+
 //404
 app.use((req, res) => {
     res.status(404).render('404', { title: '404' });
