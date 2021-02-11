@@ -8,7 +8,7 @@ const productController = require('../controllers/productController');
 //blog routes
 router.get('/products-display', productController.product_index);
 
-router.post('/products-display', productController.product_create_post);
+router.post('/', productController.product_create_post);
 
 router.get('/create', productController.product_create_get);
 

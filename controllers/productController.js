@@ -1,6 +1,6 @@
 const Product = require('../models/product');
 
-const product_index = (req, res) => {
+const product_index = (req,res) => {
     //.find() finds all stuff in collection
     //.sort() sorts it by some standard, same -1 +1 rule as JS
     Product.find().sort({ createdAt: -1 })
