@@ -1,3 +1,5 @@
+//this is where you'll find the main server, connection to database, main routes and middleware
+
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');

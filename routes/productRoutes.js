@@ -1,3 +1,5 @@
+//this is where you'll find the routes for product pages.
+
 const express = require('express');
 
 const router = express.Router();

@@ -1,3 +1,5 @@
+//this is where you'll find the schema for the product collection
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
