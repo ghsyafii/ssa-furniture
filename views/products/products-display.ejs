@@ -7,7 +7,19 @@
 
 <%- include('../partials/nav.ejs') %>
 
-<div>
+<div class="products content">
+    <h2>All Products</h2>
+    <% if (products.length > 0)
+    {%>
+        <% products.forEach(product => { %>
+            <a class="single" href="/products/products-display<%= product._id %>">
+                <h3 class="name"><%=product.name%></h3>
+                <p class="snippet"><%=product.price%></p>
+            </a>
+        <%})%>
+    <%} else {%>
+        <p>There are no products to display.</p>
+    <%}%>
 </div>
 
 <%- include('../partials/login-modal.ejs') %>
@@ -16,7 +28,6 @@
 <!-- UNDER CONSTRUCTION: FOOTER -->
 
 <%- include('../partials/scripts.ejs') %>
-
 
 </body>
 
