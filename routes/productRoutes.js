@@ -8,6 +8,8 @@ const productController = require('../controllers/productController');
 //blog routes
 router.get('/', productController.product_index);
 
+router.get('/cart', productController.cart_page);
+
 // router.post('/', blogController.blog_create_post);
 //
 // router.get('/create', blogController.blog_create_get);

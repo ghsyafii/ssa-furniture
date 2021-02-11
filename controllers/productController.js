@@ -13,6 +13,10 @@ const product_index = (req, res) => {
         })
 }
 
-module.exports = { product_index }
+const cart_page =(req,res) =>{
+    res.render('../views/products/cart.ejs')
+}
+
+module.exports = { product_index, cart_page }
 
 // module.exports = { product_index, product_details, product_create_get, product_create_post, product_delete }
