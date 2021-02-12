@@ -163,3 +163,7 @@ body {
     border-top: 0 none;
 }
 
+.delete {
+    cursor: pointer;
+}
+
