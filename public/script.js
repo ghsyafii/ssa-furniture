@@ -1,8 +1,8 @@
-const testjsbutton = document.querySelector('.testjs');
-
-testjsbutton.addEventListener('click', () => {
-    console.log('clicked! scripts are linked!');
-})
+// const testjsbutton = document.querySelector('.testjs');
+//
+// testjsbutton.addEventListener('click', () => {
+//     console.log('clicked! scripts are linked!');
+// })
 
 //Login pop-up
 

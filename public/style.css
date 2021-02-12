@@ -165,5 +165,6 @@ body {
 
 .delete {
     cursor: pointer;
+    color: red;
 }
 
