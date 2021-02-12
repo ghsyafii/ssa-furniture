@@ -1,3 +1,9 @@
+const testjsbutton = document.querySelector('.testjs');
+
+testjsbutton.addEventListener('click', () => {
+    console.log('clicked! scripts are linked!');
+})
+
 //Login pop-up
 
 // var myModal = document.getElementById("myModal");
@@ -195,7 +201,7 @@ function resetLogin() {
 //     }, 1500);
 // }
 
-
+//test
 
 
 

@@ -1,4 +1,8 @@
+//this is where you'll find the GET, POST, PUT, DELETE logic
+
 const Product = require('../models/product');
+
+//GET ALL PRODUCTS
 
 const product_index = (req,res) => {
     //.find() finds all stuff in collection
@@ -13,6 +17,8 @@ const product_index = (req,res) => {
         })
 }
 
+//GET SINGLE PRODUCT BY ID
+
 const product_details = (req,res) => {
     //get id from req object (the last bit ".id in this case" corresponds to whatever comes after :)
     const id = req.params.id;
@@ -25,9 +31,13 @@ const product_details = (req,res) => {
         })
 }
 
+//GET CREATE NEW PRODUCT PAGE
+
 const product_create_get = (req,res) => {
     res.render('products/create', { title: 'Create' });
 }
+
+//POST NEW PRODUCT
 
 const product_create_post = (req,res) => {
     const product = new Product(req.body);
@@ -37,6 +47,8 @@ const product_create_post = (req,res) => {
         })
         .catch(err => console.log(err))
 }
+
+//DELETE PRODUCT
 
 const product_delete = (req,res) => {
     const id = req.params.id;
