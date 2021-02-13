@@ -37,6 +37,14 @@ const product_create_get = (req,res) => {
     res.render('products/create', { title: 'Create' });
 }
 
+//GET UPDATE PRODUCT
+
+const product_update_get = async (req,res) => {
+    const id = req.params.id;
+    const product = await Product.findById(id);
+    res.render('products/edit', { product, title: 'Update'})
+}
+
 //POST NEW PRODUCT
 
 const product_create_post = (req,res) => {
@@ -59,4 +67,14 @@ const product_delete = (req,res) => {
         .catch(err => console.log(err))
 }
 
-module.exports = { product_index, product_details, product_create_get, product_create_post, product_delete }
+//try to put
+const product_update_put = (req,res) => {
+    const id = req.params.id;
+    Product.findByIdAndUpdate(id, {"name": "Talbot"})
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err => console.log(err))
+}
+
+module.exports = { product_index, product_details, product_create_get, product_create_post, product_delete, product_update_put, product_update_get }
