@@ -28,6 +28,8 @@ router.delete('/:id', productController.product_delete)
 //edit
 router.get('/:id/edit', productController.product_update_get)
 
+router.put('/:id', productController.product_update_put)
+
 //export router
 
 module.exports = router;

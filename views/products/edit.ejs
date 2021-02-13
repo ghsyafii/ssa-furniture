@@ -13,7 +13,7 @@
 <%- include('../partials/login-modal.ejs') %>
 
 <div class="create-blog content">
-    <form action="/products/<%product._id%>" method="POST">
+    <form action="/products/<%=product._id%>?_method=PUT" method="POST">
 
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="<%=product.name%>" required>

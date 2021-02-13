@@ -4,6 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const productRoutes = require('./routes/productRoutes');
+const methodOverride = require('method-override');
 
 const app = express();
 
@@ -33,6 +34,8 @@ app.use(express.static('public'));
 //morgan middleware
 
 app.use(morgan('dev'));
+
+app.use(methodOverride('_method'));
 
 //middleware to convert posts to right format
 
