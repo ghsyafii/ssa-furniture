@@ -34,10 +34,17 @@ const product_details = (req,res) => {
 //GET CREATE NEW PRODUCT PAGE
 
 const product_create_get = (req,res) => {
-    res.render('products/create', { title: 'Create' });
+    Product.find().sort({ createdAt: -1 })
+        .then((result) => {
+            //render to this route ie /blogs the index.ejs file and pass the title, and for the blogs, pass the result - refer to index html to see the relationships
+            res.render('products/create', { title: 'Admin Page', products: result });
+        })
+        .catch((error) => {
+            console.log(error)
+        })
 }
 
-//GET UPDATE PRODUCT
+//GET UPDATE PRODUCT %%%%%
 
 const product_update_get = async (req,res) => {
     const id = req.params.id;
