@@ -42,7 +42,7 @@ const product_create_get = (req,res) => {
 const product_update_get = async (req,res) => {
     const id = req.params.id;
     const product = await Product.findById(id);
-    res.render('products/edit', { product, title: 'Update'})
+    res.render('products/edit', { product, title: 'Edit'})
 }
 
 //POST NEW PRODUCT
