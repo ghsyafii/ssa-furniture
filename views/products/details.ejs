@@ -10,15 +10,14 @@
 <div class="details content container">
     <div class="row">
         <div class="col-6">
-            <img class="animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image" style="max-width: 80%">
+            <img class="animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image" style="max-width: 70%">
         </div>
-        <div class="col-6">
+        <div class="col-6 my-auto border border-dark p-5 rounded">
             <h2><%=product.name%></h2>
             <div class="content">
                 <p style="white-space: pre-line;"><%= product.description %></p>
                 <p style="white-space: pre-line;">$<%= product.price %></p>
                 <button id="addToCart" type="button" class="btn btn-warning">Add to cart</button>
-
             </div>
 <!--            <a class="btn btn-warning" href="<%=product._id%>/edit">Edit</a>-->
 <!--            <a class="delete btn btn-danger" data-doc="<%= product._id %>">-->
