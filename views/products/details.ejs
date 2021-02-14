@@ -17,11 +17,13 @@
             <div class="content">
                 <p style="white-space: pre-line;"><%= product.description %></p>
                 <p style="white-space: pre-line;">$<%= product.price %></p>
+                <button id="addToCart" type="button" class="btn btn-warning">Add to cart</button>
+
             </div>
-            <a class="btn btn-warning" href="<%=product._id%>/edit">Edit</a>
-            <a class="delete btn btn-danger" data-doc="<%= product._id %>">
-                Delete
-            </a>
+<!--            <a class="btn btn-warning" href="<%=product._id%>/edit">Edit</a>-->
+<!--            <a class="delete btn btn-danger" data-doc="<%= product._id %>">-->
+<!--                Delete-->
+<!--            </a>-->
         </div>
     </div>
 </div>
@@ -31,19 +33,19 @@
 <!-- UNDER CONSTRUCTION: FOOTER -->
 
 <%- include('../partials/scripts-products.ejs') %>
-<script>
-    const trashcan = document.querySelector('a.delete');
-    trashcan.addEventListener('click', (e)=> {
-        const endpoint = `/products/${trashcan.dataset.doc}`;
+<!--<script>-->
+<!--    const trashcan = document.querySelector('a.delete');-->
+<!--    trashcan.addEventListener('click', (e)=> {-->
+<!--        const endpoint = `/products/${trashcan.dataset.doc}`;-->
 
-        fetch(endpoint, {
-            method: 'DELETE'
-        })
-            .then((response)=>response.json())
-            .then((data)=>window.location.href= data.redirect)
-            .catch(err => console.log(err));
-    })
-</script>
+<!--        fetch(endpoint, {-->
+<!--            method: 'DELETE'-->
+<!--        })-->
+<!--            .then((response)=>response.json())-->
+<!--            .then((data)=>window.location.href= data.redirect)-->
+<!--            .catch(err => console.log(err));-->
+<!--    })-->
+<!--</script>-->
 
 </body>
 

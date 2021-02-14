@@ -18,7 +18,7 @@
 
         <div class="form-group">
             <label for="description">Description:</label>
-            <input type="text" id="description" class="form-control" name="description" required>
+            <textarea type="text" id="description" class="form-control" name="description" required></textarea>
         </div>
 
         <div class="form-group">
@@ -62,15 +62,14 @@
                                     <p class="card-text">$<%=product.price%></p>
 
                                     <a class="single" href="/products/<%= product._id %>">
-                                        <p class="btn btn-warning">Edit product</p>
+<!--                                        <p class="btn btn-warning">Edit product</p>-->
 
-<!--                                        TODO: Make delete button work from this page-->
+                                        <a class="text-primary" href="<%=product._id%>/edit">Edit</a>
+                                        &nbsp
+                                        <a class="delete text-danger" data-doc="<%= product._id %>">
+                                            Delete
+                                        </a>
 
-
-<!--                                        <a class="delete" data-doc="<%= product._id %>">-->
-<!--                                            Delete-->
-<!--                                        </a>-->
-<!--                                        <a href="<%=product._id%>/edit">Edit</a>-->
                                     </a>
                                 </div>
                             </div></div>
@@ -93,7 +92,19 @@
 
 <%- include('../partials/scripts-products.ejs') %>
 
+<script>
+    const trashcan = document.querySelector('.delete');
+    trashcan.addEventListener('click', (e)=> {
+        const endpoint = `/products/${trashcan.dataset.doc}`;
 
+        fetch(endpoint, {
+            method: 'DELETE'
+        })
+            .then((response)=>response.json())
+            .then((data)=>window.location.href= data.redirect)
+            .catch(err => console.log(err));
+    })
+</script>
 </body>
 
 </html>
