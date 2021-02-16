@@ -4,6 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const productRoutes = require('./routes/productRoutes');
+const cartItems = require('./models/cart-items')
 const methodOverride = require('method-override');
 
 const app = express();
@@ -43,6 +44,25 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes
 
+app.post('/cart/add', (req,res)=>{
+    cartItems.exists({_id: req.body._id}, function(err,count){
+        if(count > 0){
+            console.log("yes")
+            cartItems._id.quantity+=1;
+        }else{
+        const cart_Item = new cartItems(req.body, {quantity: 0});
+        cart_Item.save()
+            .then(result => {
+                console.log("success");
+                res.redirect('/products/products-display');
+            })
+            .catch(err => console.log(err))
+    }})
+
+
+
+})
+
 //main index
 app.get('/', (req, res) => {
     res.render('index', { title: 'Home'})
@@ -65,3 +85,4 @@ app.use('/products', productRoutes);
 app.use((req, res) => {
     res.status(404).render('404', { title: '404' });
 })
+
