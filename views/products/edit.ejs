@@ -42,6 +42,9 @@
         </div>
 
         <button class="btn btn-primary">Submit</button>
+        <a class="delete text-danger deletebutton" data-doc="<%= product._id %>">
+            Delete
+        </a>
     </form>
     <!--    <button class="testjs">JS Test</button>-->
 </div>
@@ -50,7 +53,20 @@
 <!-- UNDER CONSTRUCTION: FOOTER -->
 
 <%- include('../partials/scripts.ejs') %>
+<script>
+    const trashcan = document.querySelector('.delete');
+    trashcan.addEventListener('click', (e)=> {
+        console.log('click!');
+        const endpoint = `/products/${trashcan.dataset.doc}`;
 
+        fetch(endpoint, {
+            method: 'DELETE'
+        })
+            .then((response)=>response.json())
+            .then((data)=>window.location.href= data.redirect)
+            .catch(err => console.log(err));
+    })
+</script>
 </body>
 
 </html>
