@@ -7,16 +7,24 @@
 
 <%- include('../partials/nav-products.ejs') %>
 
-<div class="details content">
-    <h2><%=product.name%></h2>
-    <div class="content">
-        <img class="animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image" style="width: 20%">
-        <p style="white-space: pre-line;"><%= product.description %></p>
-        <p style="white-space: pre-line;">$<%= product.price %></p>
+<div class="details content container">
+    <div class="row">
+        <div class="col-6">
+            <img class="animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image" style="max-width: 70%">
+        </div>
+        <div class="col-6 my-auto border border-dark p-5 rounded">
+            <h2><%=product.name%></h2>
+            <div class="content">
+                <p style="white-space: pre-line;"><%= product.description %></p>
+                <p style="white-space: pre-line;">$<%= product.price %></p>
+                <button id="addToCart" type="button" class="btn btn-warning">Add to cart</button>
+            </div>
+<!--            <a class="btn btn-warning" href="<%=product._id%>/edit">Edit</a>-->
+<!--            <a class="delete btn btn-danger" data-doc="<%= product._id %>">-->
+<!--                Delete-->
+<!--            </a>-->
+        </div>
     </div>
-    <a class="delete" data-doc="<%= product._id %>">
-        Delete
-    </a>
 </div>
 
 <%- include('../partials/login-modal.ejs') %>
@@ -24,19 +32,19 @@
 <!-- UNDER CONSTRUCTION: FOOTER -->
 
 <%- include('../partials/scripts-products.ejs') %>
-<script>
-    const trashcan = document.querySelector('a.delete');
-    trashcan.addEventListener('click', (e)=> {
-        const endpoint = `/products/${trashcan.dataset.doc}`;
+<!--<script>-->
+<!--    const trashcan = document.querySelector('a.delete');-->
+<!--    trashcan.addEventListener('click', (e)=> {-->
+<!--        const endpoint = `/products/${trashcan.dataset.doc}`;-->
 
-        fetch(endpoint, {
-            method: 'DELETE'
-        })
-            .then((response)=>response.json())
-            .then((data)=>window.location.href= data.redirect)
-            .catch(err => console.log(err));
-    })
-</script>
+<!--        fetch(endpoint, {-->
+<!--            method: 'DELETE'-->
+<!--        })-->
+<!--            .then((response)=>response.json())-->
+<!--            .then((data)=>window.location.href= data.redirect)-->
+<!--            .catch(err => console.log(err));-->
+<!--    })-->
+<!--</script>-->
 
 </body>
 

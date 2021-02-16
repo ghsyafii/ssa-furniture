@@ -7,7 +7,7 @@ const router = express.Router();
 //import product_index
 const productController = require('../controllers/productController');
 
-//blog routes
+//product routes
 router.get('/products-display', productController.product_index);
 
 router.get('/cart', (req, res) => {
@@ -24,6 +24,11 @@ router.get('/:id', productController.product_details);
 
 //delete
 router.delete('/:id', productController.product_delete)
+
+//edit
+router.get('/:id/edit', productController.product_update_get)
+
+router.put('/:id', productController.product_update_put)
 
 //export router
 

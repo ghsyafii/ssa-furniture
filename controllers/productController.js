@@ -34,7 +34,22 @@ const product_details = (req,res) => {
 //GET CREATE NEW PRODUCT PAGE
 
 const product_create_get = (req,res) => {
-    res.render('products/create', { title: 'Create' });
+    Product.find().sort({ createdAt: -1 })
+        .then((result) => {
+            //render to this route ie /blogs the index.ejs file and pass the title, and for the blogs, pass the result - refer to index html to see the relationships
+            res.render('products/create', { title: 'Admin Page', products: result });
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
+//GET UPDATE PRODUCT %%%%%
+
+const product_update_get = async (req,res) => {
+    const id = req.params.id;
+    const product = await Product.findById(id);
+    res.render('products/edit', { product, title: 'Edit'})
 }
 
 //POST NEW PRODUCT
@@ -59,4 +74,13 @@ const product_delete = (req,res) => {
         .catch(err => console.log(err))
 }
 
-module.exports = { product_index, product_details, product_create_get, product_create_post, product_delete }
+//try to put
+const product_update_put = async (req,res) => {
+    const id = req.params.id;
+    const product = await Product.findByIdAndUpdate(id, req.body, {runValidators: true, new: true});
+    res.redirect(`/products/${id}`)
+    // console.log(req.body);
+    // res.send('PUT!!!');
+}
+
+module.exports = { product_index, product_details, product_create_get, product_create_post, product_delete, product_update_put, product_update_get }

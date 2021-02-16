@@ -18,12 +18,13 @@
     {%>
         <% products.forEach(product => { %>
 
-        <div class="col-sm-3"><div class="card p-1">
-                <img class="card-img-top animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="">
+        <div class="col-sm-3"><div class="card p-2 border border-dark mb-4">
+                <img class="card-img-top animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image">
                 <div class="card-body">
                     <h5 class="card-title"><%=product.name%></h5>
 
                     <p class="card-text">$<%=product.price%></p>
+
 
                             <a class="single" href="/products/<%= product._id %>">
                                     <p>Click here for details.</p>
