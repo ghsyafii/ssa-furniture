@@ -7,17 +7,35 @@
 
 <%- include('../partials/nav-products.ejs') %>
 
-<div class="container-fluid">
-    <div class="row">
-        <h1>Cart</h1>
-    </div>
-</div>
 
-<div class="container-fluid card-horizontal">
-    <div class="row col-12 mt-3" id="items-container">
+            <div class="row">
+                <div id="cards" class="card-group testcarts">
+                    <% if (cartItems.length > 0)
+                    {%>
+                        <% cartItems.forEach(cartItems => { %>
 
-    </div>
-</div>
+                        <div class="col-sm-3"><div class="card border border-dark p-2 mb-3">
+                                <img class="card-img-top animate__animated animate__fadeIn" src="<%=cartItems.image%>" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%=cartItems.name%></h5>
+                                    <p class="card-text">$<%=cartItems.price%></p>
+
+                                    <a class="single" href="/products/<%= cartItems._id %>">
+                                        <!--                                        <p class="btn btn-warning">Edit product</p>-->
+
+                                        <a class="text-primary" href="<%=cartItems._id%>/edit">Edit</a>
+
+                                    </a>
+                                </div>
+                            </div></div>
+                        <%})%>
+                    <%} else {%>
+                        <p>There are no products to display.</p>
+                    <%}%>
+                </div>
+            </div>
+
+
 
 <!-- horizontal end-->
 <div class="totalPriceBox">
@@ -35,10 +53,6 @@
 
 <%- include('../partials/login-modal.ejs') %>
 
-<%%>
-
-
-<h1>TESTER TEXT</h1>
 
 <%- include('../partials/scripts-products.ejs') %>
 
