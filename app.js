@@ -59,9 +59,19 @@ app.post('/cart/add', (req,res)=>{
             .catch(err => console.log(err))
     }})
 
-
-
 })
+
+// app.get('/cart', (req,res)=>{
+//     cartItems.find().sort({ createdAt: -1 })
+//         .then((result) => {
+//             //render to this route ie /blogs the index.ejs file and pass the title, and for the blogs, pass the result - refer to index html to see the relationships
+//             res.render('products/cart', { title: 'Cart Page', cartItems: result });
+//         })
+//         .catch((error) => {
+//             console.log(error)
+//         })
+//
+// })
 
 //main index
 app.get('/', (req, res) => {
