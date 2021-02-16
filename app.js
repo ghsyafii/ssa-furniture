@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const productRoutes = require('./routes/productRoutes');
 const cartItems = require('./models/cart-items')
 const methodOverride = require('method-override');
-
+const session = require('express-session');
 const app = express();
 
 //connect to MongoDB
@@ -32,6 +32,13 @@ app.listen(process.env.PORT || 4000);
 
 app.use(express.static('public'));
 
+//set session
+app.use(session({
+    secret: "secret-key",
+    resave: true,
+    saveUninitialized: true
+}));
+
 //morgan middleware
 
 app.use(morgan('dev'));
@@ -45,33 +52,42 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 
 app.post('/cart/add', (req,res)=>{
+    req.session.inCart = req.session.inCart||[];
     cartItems.exists({_id: req.body._id}, function(err,count){
         if(count > 0){
-            console.log("yes")
-            cartItems._id.quantity+=1;
+            console.log("yes");
+            console.log(req.session.inCart);
+            let x = req.body;
+            let p ={
+                name: x.name,
+                price: x.price,
+                quantity: 1
+            }
+            req.session.inCart.push(p);
+            console.log(req.session.inCart);
+            res.render('tester', {items: req.session.inCart});
+
         }else{
-        const cart_Item = new cartItems(req.body, {quantity: 0});
+        const cart_Item = new cartItems(req.body);
         cart_Item.save()
             .then(result => {
                 console.log("success");
-                res.redirect('/products/products-display');
+                let p ={
+                    name: cart_Item.name,
+                    price: cart_Item.price,
+                    quantity: 1
+                }
+                req.session.inCart.push(p);
+                console.log(req.session.inCart);
+                res.render('tester', {items: req.session.inCart});
+                console.log("it is done")
+                // res.redirect('/products/products-display');
             })
             .catch(err => console.log(err))
     }})
 
 })
 
-// app.get('/cart', (req,res)=>{
-//     cartItems.find().sort({ createdAt: -1 })
-//         .then((result) => {
-//             //render to this route ie /blogs the index.ejs file and pass the title, and for the blogs, pass the result - refer to index html to see the relationships
-//             res.render('products/cart', { title: 'Cart Page', cartItems: result });
-//         })
-//         .catch((error) => {
-//             console.log(error)
-//         })
-//
-// })
 
 //main index
 app.get('/', (req, res) => {

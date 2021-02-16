@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+
+<body>
+
+
+
+<p>visited the page <%=items%> times</p>
+
+<% if (items.length > 0)
+{%>
+    <% items.forEach(p => { %>
+
+    <div class="col-sm-3"><div class="card border border-dark p-2 mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><%=p.name%></h5>
+                <p class="card-text">$<%=p.price%></p>
+
+
+                </a>
+            </div>
+        </div></div>
+    <%})%>
+<%} else {%>
+    <p>There are no products to display.</p>
+<%}%>
+
+<!--Under Construction: Footer-->
+
+<!--firebase login script-->
+
+
+
+</body>
+
+</html>
