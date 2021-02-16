@@ -17,20 +17,25 @@
     <% if (products.length > 0)
     {%>
         <% products.forEach(product => { %>
-
+        <form action="/cart/add" method="POST">
         <div class="col-sm-3"><div class="card p-1">
                 <img class="card-img-top animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="">
                 <div class="card-body">
                     <h5 class="card-title"><%=product.name%></h5>
+                    <input type="hidden" name="name" value="<%=product.name%>">
+                    <input type="hidden" name="_id" value="<%=product._id%>">
+                    <input type="hidden" name="price" value="<%=product.price%>">
+                    <input type="hidden" name="image" value="<%=product.imageURL%>">
                     <p class="card-text">$<%=product.price%></p>
 
                             <a class="single" href="/products/<%= product._id %>">
                                     <p>Click here for details.</p>
                                 </a>
 
-                    <button id="addToCart" type="button" class="btn btn-warning">Add to cart</button>
+                    <input id="addToCart" type="submit" class="btn btn-warning">
                 </div>
             </div></div>
+        </form>
         <%})%>
     <%} else {%>
         <p>There are no products to display.</p>

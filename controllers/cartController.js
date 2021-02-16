@@ -7,12 +7,18 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const productRoutes = require('./routes/productRoutes');
-const Product = require('../models/product');
+const cartItems = require('../models/cart-items');
 
 const app = express();
 const dbURI = 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority'
-
+app.set('view engine', 'ejs');
+app.listen(process.env.PORT || 4000);
+//grant access to static files
+app.use(express.static('public'));
+//morgan middleware
+app.use(morgan('dev'));
+//middleware to convert posts to right format
+app.use(express.urlencoded({ extended: true }));
 //connect mongoose
 
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true })
@@ -22,11 +28,12 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true })
     })
     .catch((err) => console.log(err));
 
-app.post('/cart/:id', (req,res)=>{
-    const id = req.params.id;
-    Product.findById(id)
-        .then((result)=>{
-            res.redirect('products/cart')
-        })
-        .catch(err => console.log(err))
-    })
+// app.post('/cart/add', (req,res)=>{
+//     const cart_Item = new cartItems(req.body);
+//     cart_Item.save()
+//         .then(result => {
+//             console.log("success");
+//             res.redirect('products/products-display');
+//         })
+//         .catch(err => console.log(err))
+//     })
