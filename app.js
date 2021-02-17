@@ -4,9 +4,11 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
 const cartItems = require('./models/cart-items')
 const methodOverride = require('method-override');
 const session = require('express-session');
+const PORT = process.env.PORT || 4000;
 var MongoDBStore = require('connect-mongodb-session')(session);
 const app = express();
 
@@ -31,7 +33,7 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true })
 
 app.set('view engine', 'ejs');
 
-app.listen(process.env.PORT || 4000);
+app.listen(PORT, console.log(PORT));
 
 //grant access to static files
 
@@ -115,6 +117,8 @@ app.get('/contact', (req, res) => {
 
 //product routes
 app.use('/products', productRoutes);
+
+app.use('/users', userRoutes);
 
 //404
 app.use((req, res) => {
