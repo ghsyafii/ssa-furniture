@@ -9,6 +9,8 @@ const cartItems = require('./models/cart-items')
 const methodOverride = require('method-override');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
+const flash = require('connect-flash');
+
 const PORT = process.env.PORT || 4000;
 var MongoDBStore = require('connect-mongodb-session')(session);
 const dbURI = require('./config/keys').MongoURI
@@ -52,6 +54,7 @@ app.use(express.static('public'));
 //set session
 app.use(session({
     secret: 'secret session key',
+    //TODO: change resave to true if not working
     resave: false,
     saveUninitialized: true,
     store: store,
@@ -59,6 +62,15 @@ app.use(session({
     name: 'session cookie'
 }));
 
+//connect flash
+app.use(flash());
+
+//global variables
+app.use(()=> (req,res,next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+})
 
 //morgan middleware
 
