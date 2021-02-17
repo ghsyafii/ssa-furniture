@@ -7,11 +7,16 @@ const productRoutes = require('./routes/productRoutes');
 const cartItems = require('./models/cart-items')
 const methodOverride = require('method-override');
 const session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);
 const app = express();
 
 //connect to MongoDB
 
 const dbURI = 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority'
+const store = new MongoDBStore({
+    uri: 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority',
+    collection: 'sessions'
+});
 
 //connect mongoose
 
@@ -34,10 +39,14 @@ app.use(express.static('public'));
 
 //set session
 app.use(session({
-    secret: "secret-key",
-    resave: true,
-    saveUninitialized: true
+    secret: 'secret session key',
+    resave: false,
+    saveUninitialized: true,
+    store: store,
+    unset: 'destroy',
+    name: 'session cookie'
 }));
+
 
 //morgan middleware
 
@@ -51,48 +60,48 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes
 
-app.post('/cart/add', (req,res)=>{
-    req.session.inCart = req.session.inCart||[];
-    cartItems.exists({_id: req.body._id}, function(err,count){
-        if(count > 0){
-            console.log("yes");
-            console.log(req.session.inCart);
-            let x = req.body;
-            let p ={
-                name: x.name,
-                price: x.price,
-                quantity: 1
-            }
-            req.session.inCart.push(p);
-            console.log(req.session.inCart);
-            res.render('tester', {items: req.session.inCart});
 
-        }else{
-        const cart_Item = new cartItems(req.body);
-        cart_Item.save()
-            .then(result => {
-                console.log("success");
-                let p ={
-                    name: cart_Item.name,
-                    price: cart_Item.price,
+app.post('/cart/in-cart', (req,res)=>{
+//naming the array within session cookie as inCart and storing as accordingly
+    req.session.inCart = req.session.inCart||[];
+            console.log("yes");
+    (req.session.name);
+            console.log(req.session.inCart);
+            if(req.session.name !== "undefined") {
+                let item = {
+                    name: req.body.name,
+                    price: req.body.price,
                     quantity: 1
                 }
-                req.session.inCart.push(p);
+                req.session.inCart.push(item);
                 console.log(req.session.inCart);
-                res.render('tester', {items: req.session.inCart});
-                console.log("it is done")
-                // res.redirect('/products/products-display');
-            })
-            .catch(err => console.log(err))
-    }})
+                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart"})
+                console.log('booo')
+            }else{
+                console.log("ollaaaaa")
+                let x = req.body
+                let item = {
+                    name: req.body.name,
+                    price: req.body.price,
+                    quantity: 1
+                }
+                req.session.inCart.push(item);
+                console.log(req.session.inCart);
+                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart"})
+                console.log('empty')
+            }
+
+
 
 })
 
 
 //main index
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Home'})
-});
+            res.render('index', {title: 'Home'})
+        });
+
+
 
 //about
 app.get('/about', (req, res) => {

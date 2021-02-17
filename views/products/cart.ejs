@@ -10,24 +10,21 @@
 
             <div class="row">
                 <div id="cards" class="card-group testcarts">
-                    <% if (cartItems.length > 0)
+                    <% if (cartItems)
                     {%>
                         <% cartItems.forEach(cartItems => { %>
 
-                        <div class="col-sm-3"><div class="card border border-dark p-2 mb-3">
-                                <img class="card-img-top animate__animated animate__fadeIn" src="<%=cartItems.image%>" alt="">
+
                                 <div class="card-body">
                                     <h5 class="card-title"><%=cartItems.name%></h5>
                                     <p class="card-text">$<%=cartItems.price%></p>
+                                    <form>
+                                   <input type="submit" class="remove-one" value="remove">
+                                    </form>
 
-                                    <a class="single" href="/products/<%= cartItems._id %>">
-                                        <!--                                        <p class="btn btn-warning">Edit product</p>-->
 
-                                        <a class="text-primary" href="<%=cartItems._id%>/edit">Edit</a>
-
-                                    </a>
                                 </div>
-                            </div></div>
+
                         <%})%>
                     <%} else {%>
                         <p>There are no products to display.</p>
