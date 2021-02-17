@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const cartItems = require('../models/cart-items');
+const { ensureAuthenticated } = require('../config/auth');
 
 
 //import product_index
@@ -29,7 +30,7 @@ req.session.destroy(err => {
 
 router.post('/', productController.product_create_post);
 
-router.get('/create', productController.product_create_get);
+router.get('/create', ensureAuthenticated, productController.product_create_get);
 
 //GET: Post by ID (include : in front of route parameter
 
