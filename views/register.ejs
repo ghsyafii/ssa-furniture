@@ -8,22 +8,22 @@
 <body>
 <div class="container text-center">
 
-<form class="form-signin">
+<form action="/users/register" method="POST" class="form-signin">
     <!--    <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
     <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
-    <label for="inputName" class="sr-only">Name</label>
-    <input type="name" id="inputEmail" class="form-control" placeholder="Name" required autofocus>
+    <%- include('./partials/messages.ejs') %>
+        <label for="name" class="sr-only">Name</label>
+        <input type="name" id="name" name="name" class="form-control" placeholder="Name" value="<% typeof name != 'undefined' ? name : '' %>" required autofocus>
     <br>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="<% typeof email != 'undefined' ? email : '' %>" required autofocus>
     <br>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
-    </div>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="<% typeof password != 'undefined' ? password : '' %>" required>
+    <br>
     <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
 </form>
-
+<p class="lead mt-4">Have an account? <a href="/users/login">Login</a></p>
 <%- include('./partials/scripts.ejs')%>
 </div>
 </body>

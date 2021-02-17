@@ -11,13 +11,21 @@ const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
 const PORT = process.env.PORT || 4000;
 var MongoDBStore = require('connect-mongodb-session')(session);
+const dbURI = require('./config/keys').MongoURI
+
 const app = express();
 
 //connect to MongoDB
 
-const dbURI = 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority'
+// const dbURI = 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority'
+// const store = new MongoDBStore({
+//     uri: 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority',
+//     collection: 'sessions'
+// });
+
+//TODO: add config to .gitignore to protext password
 const store = new MongoDBStore({
-    uri: 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority',
+    uri: dbURI,
     collection: 'sessions'
 });
 
@@ -60,6 +68,7 @@ app.use(methodOverride('_method'));
 
 //middleware to convert posts to right format
 
+//TODO: Check if it should be false
 app.use(express.urlencoded({ extended: true }));
 
 //routes
