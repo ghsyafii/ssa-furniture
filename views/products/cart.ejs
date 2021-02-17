@@ -22,6 +22,10 @@
                                    <input type="submit" class="remove-one" value="remove">
                                     </form>
 
+                                    <a class="single" href="/products/<%= cartItems._id %>">
+                                        <!--                                        <p class="btn btn-warning">Edit product</p>-->
+
+<!--                                        <a class="text-primary" href="<%=cartItems._id%>/edit">Edit</a>-->
 
                                 </div>
 
@@ -43,7 +47,7 @@
 
 <div>
     <button class="btn btn-secondary" onclick="ClearStorage()">Clear Cart</button>
-    <button class="btn btn-info"><a href="form.html">Check Out</a></button>
+    <button class="btn btn-success checkoutbtn"><a href="form.html">Check Out</a></button>
 </div>
 
 <div id="confirmclear"></div>

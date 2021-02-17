@@ -171,3 +171,12 @@ body {
     display: inline;
 }
 
+/*.hide {*/
+/*    display: none;*/
+/*}*/
+
+.checkoutbtn a {
+    color: white;
+}
+
+

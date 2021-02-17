@@ -17,7 +17,14 @@
             <div class="content">
                 <p style="white-space: pre-line;"><%= product.description %></p>
                 <p style="white-space: pre-line;">$<%= product.price %></p>
-                <button id="addToCart" type="button" class="btn btn-warning">Add to cart</button>
+<!--                <button id="addToCart" type="button" class="btn btn-warning">Add to cart</button>-->
+                <form action="/cart/add" method="POST">
+                    <input type="hidden" name="name" value="<%=product.name%>">
+                    <input type="hidden" name="_id" value="<%=product._id%>">
+                    <input type="hidden" name="price" value="<%=product.price%>">
+                    <input type="hidden" name="image" value="<%=product.imageURL%>">
+                    <input id="addToCart" type="submit" class="btn btn-warning" value="Add to cart">
+                </form>
             </div>
 <!--            <a class="btn btn-warning" href="<%=product._id%>/edit">Edit</a>-->
 <!--            <a class="delete btn btn-danger" data-doc="<%= product._id %>">-->
