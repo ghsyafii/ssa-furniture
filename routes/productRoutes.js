@@ -1,9 +1,9 @@
 //this is where you'll find the routes for product pages.
 
 const express = require('express');
-
 const router = express.Router();
-const cartItems = require('../models/cart-items')
+const cartItems = require('../models/cart-items');
+
 
 //import product_index
 const productController = require('../controllers/productController');
@@ -11,21 +11,22 @@ const productController = require('../controllers/productController');
 //product routes
 router.get('/products-display', productController.product_index);
 
-// router.get('/cart', (req, res) => {
-//     res.render('products/cart', { title: 'Cart' });
-// })
 
 router.get('/cart', (req,res)=>{
-    cartItems.find().sort({ createdAt: -1 })
-        .then((result) => {
-            //render to this route ie /blogs the index.ejs file and pass the title, and for the blogs, pass the result - refer to index html to see the relationships
-            res.render('products/cart', { title: 'Cart Page', cartItems: result });
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-
+    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart"})
 })
+
+router.post('/logout', (req, res) => {
+req.session.destroy(err => {
+    if (err) {
+        return console.log(err);
+    }
+    req.session = null;
+    res.redirect('/');
+});
+});
+
+
 router.post('/', productController.product_create_post);
 
 router.get('/create', productController.product_create_get);
