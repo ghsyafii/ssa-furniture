@@ -8,6 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 const cartItems = require('./models/cart-items')
 const methodOverride = require('method-override');
 const session = require('express-session');
+const expressLayouts = require('express-ejs-layouts');
 const PORT = process.env.PORT || 4000;
 var MongoDBStore = require('connect-mongodb-session')(session);
 const app = express();
@@ -31,6 +32,7 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true })
 
 //register view engine
 
+// app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 app.listen(PORT, console.log(PORT));
