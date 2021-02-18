@@ -40,12 +40,10 @@
 
 <!--&lt;!&ndash;                <li class="nav-item nav-link d-none admin-btn"><a href="products/create" class="text-danger">Admin</a></li>&ndash;&gt;-->
 <!--                <li class="nav-item nav-link hide"><a href="/products/create" class="text-danger">Admin</a></li>-->
-                <% if(true){ %>
+                <% if(!isLoggedIn){ %>
                     <li class="nav-item nav-link admin-btn"><a href="/products/create" class="">Login</a></li>
-                    <a href="/users/logout" class="btn btn-warning">Log Out</a>
-
-            <% } else{ %>
-                    <h1>bar</h1>
+                <% } else { %>
+                    <a href="/users/logout" class="nav-item nav-link">Log Out</a>
                 <% } %>
 
                 <li class="nav-item">

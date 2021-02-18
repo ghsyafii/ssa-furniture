@@ -10,7 +10,7 @@ const product_index = (req,res) => {
     Product.find().sort({ createdAt: -1 })
         .then((result) => {
             //render to this route ie /blogs the index.ejs file and pass the title, and for the blogs, pass the result - refer to index html to see the relationships
-            res.render('products/products-display', { title: 'All Products', products: result });
+            res.render('products/products-display', { title: 'All Products', products: result, isLoggedIn: req.user });
         })
         .catch((error) => {
             console.log(error)
@@ -24,10 +24,10 @@ const product_details = (req,res) => {
     const id = req.params.id;
     Product.findById(id)
         .then(result => {
-            res.render('products/details', { product : result, title: 'Product Details' });
+            res.render('products/details', { product : result, title: 'Product Details', isLoggedIn: req.user });
         })
         .catch(err => {
-            res.status(404).render('404', { title: 'Product not found' })
+            res.status(404).render('404', { title: 'Product not found', isLoggedIn: req.user })
         })
 }
 
@@ -37,7 +37,7 @@ const product_create_get = (req,res) => {
     Product.find().sort({ createdAt: -1 })
         .then((result) => {
             //render to this route ie /blogs the index.ejs file and pass the title, and for the blogs, pass the result - refer to index html to see the relationships
-            res.render('products/create', { title: 'Admin Page', products: result });
+            res.render('products/create', { title: 'Admin Page', products: result, isLoggedIn: req.user });
         })
         .catch((error) => {
             console.log(error)
@@ -49,7 +49,7 @@ const product_create_get = (req,res) => {
 const product_update_get = async (req,res) => {
     const id = req.params.id;
     const product = await Product.findById(id);
-    res.render('products/edit', { product, title: 'Edit'})
+    res.render('products/edit', { product, title: 'Edit', isLoggedIn: req.user})
 }
 
 //POST NEW PRODUCT

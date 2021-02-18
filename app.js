@@ -16,6 +16,8 @@ const PORT = process.env.PORT || 4000;
 var MongoDBStore = require('connect-mongodb-session')(session);
 const dbURI = require('./config/keys').MongoURI
 
+// const { ensureAuthenticated } = require('./config/auth');
+
 const app = express();
 
 //Passport config
@@ -79,6 +81,12 @@ app.use(morgan('dev'));
 
 app.use(methodOverride('_method'));
 
+// authenticated test
+app.use((req,res,next) => {
+    res.locals.login = req.isAuthenticated();
+    next();
+})
+
 //middleware to convert posts to right format
 
 //TODO: Check if it should be false
@@ -124,19 +132,19 @@ app.post('/cart/in-cart', (req,res)=>{
 
 //main index
 app.get('/', (req, res) => {
-            res.render('index', {title: 'Home'})
+            res.render('index', {title: 'Home', isLoggedIn: req.user})
         });
 
 
 
 //about
 app.get('/about', (req, res) => {
-    res.render('about', { title: 'About' });
+    res.render('about', { title: 'About', isLoggedIn: req.user });
 });
 
 //contact
 app.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact' });
+    res.render('contact', { title: 'Contact', isLoggedIn: req.user });
 });
 
 //product routes
@@ -146,7 +154,7 @@ app.use('/users', userRoutes);
 
 //404
 app.use((req, res) => {
-    res.status(404).render('404', { title: '404' });
+    res.status(404).render('404', { title: '404', isLoggedIn: req.user });
 })
 
 //global variables

@@ -8,11 +8,11 @@ const passport = require('passport');
 const User = require('../models/user');
 
 router.get('/login', (req,res) => {
-    res.render('login', { title: 'Login'});
+    res.render('login', { title: 'Login', isLoggedIn: req.user});
 })
 
 router.get('/register', (req,res) => {
-    res.render('register', { title: 'Register'});
+    res.render('register', { title: 'Register', isLoggedIn: req.user});
 })
 
 router.post('/register', (req,res) => {

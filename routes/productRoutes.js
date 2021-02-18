@@ -14,7 +14,7 @@ router.get('/products-display', productController.product_index);
 
 
 router.get('/cart', (req,res)=>{
-    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart"})
+    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
 })
 
 router.post('/logout', (req, res) => {
