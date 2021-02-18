@@ -109,7 +109,7 @@ app.post('/cart/in-cart', (req,res)=>{
                 }
                 req.session.inCart.push(item);
                 console.log(req.session.inCart);
-                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart"})
+                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
                 console.log('booo')
             }else{
                 console.log("ollaaaaa")
