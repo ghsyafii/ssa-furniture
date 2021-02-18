@@ -17,6 +17,7 @@ router.get('/cart', (req,res)=>{
     res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
 })
 
+//TODO: Try to destroy entire session
 router.post('/logout', (req, res) => {
 req.session.destroy(err => {
     if (err) {

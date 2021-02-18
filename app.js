@@ -60,7 +60,7 @@ app.use(express.static('public'));
 //set session
 app.use(session({
     secret: 'secret session key',
-    //TODO: change resave to true if not working
+    //TODO: change resave to true if not working - test
     resave: false,
     saveUninitialized: true,
     store: store,
