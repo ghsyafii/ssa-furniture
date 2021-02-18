@@ -11,8 +11,9 @@
 <form action="/users/register" method="POST" class="form-signin">
     <!--    <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
     <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
-    <%- include('./partials/messages.ejs') %>
-        <label for="name" class="sr-only">Name</label>
+    <%- include('./partials/messages') %>
+
+    <label for="name" class="sr-only">Name</label>
         <input type="name" id="name" name="name" class="form-control" placeholder="Name" value="<% typeof name != 'undefined' ? name : '' %>" required autofocus>
     <br>
         <label for="email" class="sr-only">Email address</label>

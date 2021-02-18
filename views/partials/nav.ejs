@@ -30,20 +30,29 @@
             </ul>
             <ul class="navbar-nav text-right">
 
-                <li id="navLogin" class="nav-item nav-link loginlink" data-toggle="modal" data-target="#myModal">Login
-                </li>
-                <form action ="/logout" method="POST">
-                <li id="navLogout" class="nav-item nav-link d-none">Logout</li>
-                    <input type="submit" value="logout">
-                </form>
+<!--                <li id="navLogin" class="nav-item nav-link loginlink" data-toggle="modal" data-target="#myModal">Login-->
+<!--                </li>-->
+<!--                <form action ="/logout" method="POST">-->
+<!--                <li id="navLogout" class="nav-item nav-link d-none">Logout</li>-->
+<!--                    <input type="submit" value="logout">-->
+<!--                </form>-->
 
 <!--                <li class="nav-item nav-link d-none admin-btn"><a href="products/create" class="text-danger">Admin</a></li>-->
-                <li class="nav-item nav-link admin-btn"><a href="/products/create" class="text-danger">Admin</a></li>
+
+                <% if(true){ %>
+                    <li class="nav-item nav-link admin-btn"><a href="/products/create" class="">Login</a></li>
+                    <a href="/users/logout" class="btn btn-warning">Log Out</a>
+
+            <% } else{ %>
+                    <h1>bar</h1>
+                <% } %>
 
                 <li class="nav-item">
                     <a href="/products/cart" class="nav-link"><img src="/images/cart.svg"
                                                                     style="width:auto;height:17px;">
                     </a>
+
+
 
                 </li>
             </ul>
