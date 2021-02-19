@@ -17,7 +17,6 @@
             <div class="content">
                 <p style="white-space: pre-line;"><%= product.description %></p>
                 <p style="white-space: pre-line;">$<%= product.price %></p>
-<!--                <button id="addToCart" type="button" class="btn btn-warning">Add to cart</button>-->
                 <form action="/cart/add" method="POST">
                     <input type="hidden" name="name" value="<%=product.name%>">
                     <input type="hidden" name="_id" value="<%=product._id%>">
@@ -26,35 +25,15 @@
                     <input id="addToCart" type="submit" class="btn btn-warning" value="Add to cart">
                 </form>
             </div>
-<!--            <a class="btn btn-warning" href="<%=product._id%>/edit">Edit</a>-->
-<!--            <a class="delete btn btn-danger" data-doc="<%= product._id %>">-->
-<!--                Delete-->
-<!--            </a>-->
         </div>
     </div>
 </div>
 <br>
 <%- include('../partials/footer.ejs') %>
 
-
 <%- include('../partials/login-modal.ejs') %>
 
-<!-- UNDER CONSTRUCTION: FOOTER -->
-
 <%- include('../partials/scripts-products.ejs') %>
-<!--<script>-->
-<!--    const trashcan = document.querySelector('a.delete');-->
-<!--    trashcan.addEventListener('click', (e)=> {-->
-<!--        const endpoint = `/products/${trashcan.dataset.doc}`;-->
-
-<!--        fetch(endpoint, {-->
-<!--            method: 'DELETE'-->
-<!--        })-->
-<!--            .then((response)=>response.json())-->
-<!--            .then((data)=>window.location.href= data.redirect)-->
-<!--            .catch(err => console.log(err));-->
-<!--    })-->
-<!--</script>-->
 
 </body>
 
