@@ -64,7 +64,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: store,
-    // unset: 'destroy',
+    unset: 'destroy',
     name: 'session cookie'
 }));
 
@@ -131,9 +131,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post('/cart/in-cart', (req,res)=>{
 //naming the array within session cookie as inCart and storing as accordingly
-    req.session.inCart = req.session.inCart||[];
+    req.session.inCart = req.user.inCart||[];
     console.log("HELLOOPOOOOOO");
     console.log(req.user.inCart);
+    console.log("The point where is session.incart can be equal to user");
+    console.log(req.session.inCart);
     if(Array.isArray(req.user.inCart)&& req.user.inCart.length>0) {
         var itemLocation = req.user.inCart.map(item => item.name).indexOf(req.body.name);
         console.log(itemLocation);
@@ -146,9 +148,7 @@ app.post('/cart/in-cart', (req,res)=>{
                     req.user.inCart.splice(itemLocation, 1, item);
                 }
                 console.log(req.session.inCart);
-                // req.user.inCart.push(item);
                 req.user.save();
-                console.log(item);
                 console.log("PLEASE WORKKKKKKK1");
                 console.log(req.user.inCart);
 
