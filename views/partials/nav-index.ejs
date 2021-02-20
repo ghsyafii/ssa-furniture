@@ -45,6 +45,10 @@
                     <a href="/users/logout" class="nav-item nav-link">Log Out</a>
                 <% } %>
 
+                <% if(admin){ %>
+                    <li class="nav-item nav-link admin-btn"><a href="/products/create" class="">Login</a></li>
+                <% } %>
+
                 <li class="nav-item">
                     <a href="/products/cart" class="nav-link"><img src="/images/cart.svg"
                                                                     style="width:auto;height:17px;">

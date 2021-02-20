@@ -245,7 +245,7 @@ app.post('/cart/in-cart', (req,res)=>{
 
 //main index
 app.get('/', (req, res) => {
-            res.render('index', {title: 'Home', isLoggedIn: req.user})
+            res.render('index', { title: 'Home', isLoggedIn: req.user })
         });
 
 
