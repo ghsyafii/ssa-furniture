@@ -1,10 +1,21 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    /*font-family: adobe-caslon-pro,serif;*/
+    /*font-weight: 400;*/
+    /*font-style: normal;*/
+    /*font-size: 1.1em;*/
+
+        font-family: 'Roboto', sans-serif;
     margin-right: 20px;
     margin-left: 20px;
     padding-top: 80px;
     background-color: #FDFBF4 !important;
 }
+
+/*h1, h2, h3, h4, h5, nav, .btn, footer {*/
+
+/*    font-family: 'Roboto', sans-serif;*/
+
+/*}*/
 
 .navbar {
     background-color: #FDFBF4 !important;
