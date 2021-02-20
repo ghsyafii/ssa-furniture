@@ -14,10 +14,14 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
     inCart: {
         type: Array
     },
-    }
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
