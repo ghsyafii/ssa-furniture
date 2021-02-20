@@ -4,18 +4,34 @@ body {
     /*font-style: normal;*/
     /*font-size: 1.1em;*/
 
-        font-family: 'Roboto', sans-serif;
+    font-family: lora,serif;
+    font-weight: 400;
+    font-style: normal;
+
+        /*font-family: 'Roboto', sans-serif;*/
     margin-right: 20px;
     margin-left: 20px;
     padding-top: 80px;
     background-color: #FDFBF4 !important;
 }
 
-/*h1, h2, h3, h4, h5, nav, .btn, footer {*/
+.btn {
+    font-weight: 400;
+    padding-right: 1em;
+    padding-left: 1em;
+}
 
-/*    font-family: 'Roboto', sans-serif;*/
+img {
+    border-radius: 3px;
+}
 
-/*}*/
+h1, h2, h3, h4, h5, nav, .btn, footer {
+
+    font-family: 'Roboto', sans-serif;
+
+
+
+}
 
 .navbar {
     background-color: #FDFBF4 !important;
