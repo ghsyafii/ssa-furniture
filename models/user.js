@@ -14,6 +14,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    inCart: {
+        type: Array
+    },
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

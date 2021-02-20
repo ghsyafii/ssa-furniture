@@ -64,7 +64,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: store,
-    unset: 'destroy',
+    // unset: 'destroy',
     name: 'session cookie'
 }));
 
@@ -132,24 +132,28 @@ app.use(express.urlencoded({ extended: true }));
 app.post('/cart/in-cart', (req,res)=>{
 //naming the array within session cookie as inCart and storing as accordingly
     req.session.inCart = req.session.inCart||[];
-    console.log("yes");
-    console.log(Array.isArray(req.session.inCart));
-    console.log(req.session.inCart.length);
-    if(Array.isArray(req.session.inCart)&& req.session.inCart.length>0) {
-        var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
+    console.log("HELLOOPOOOOOO");
+    console.log(req.user.inCart);
+    if(Array.isArray(req.user.inCart)&& req.user.inCart.length>0) {
+        var itemLocation = req.user.inCart.map(item => item.name).indexOf(req.body.name);
         console.log(itemLocation);
         if (itemLocation !== -1) {
-            req.session.inCart.forEach(item => {
+            req.user.inCart.forEach(item => {
                 if (req.body.name === item.name) {
                     console.log("I found it" + item.name);
-                    console.log(req.session.inCart);
+                    console.log(req.user.inCart);
                     item.quantity += 1;
-                    req.session.inCart.splice(itemLocation, 1, item);
+                    req.user.inCart.splice(itemLocation, 1, item);
                 }
                 console.log(req.session.inCart);
+                // req.user.inCart.push(item);
+                req.user.save();
+                console.log(item);
+                console.log("PLEASE WORKKKKKKK1");
+                console.log(req.user.inCart);
 
             })
-            res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+            res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
             console.log('booo')
         } else{
                 console.log("this is neww yayyyyyyyyyyyyyyy");
@@ -158,10 +162,14 @@ app.post('/cart/in-cart', (req,res)=>{
                     price: req.body.price,
                     quantity: 1
                 }
-                req.session.inCart.push(item2);
-                console.log(req.session.inCart);
-                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+            req.user.inCart.push(item2);
+                console.log(req.user.inCart);
+                res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
                 console.log('misleading text here, sorry to ollaaaaa unit');
+            req.user.save();
+            console.log(item2);
+            console.log("PLEASE WORKKKKKKK2");
+            console.log(req.user.inCart);
             }
 
 
@@ -172,20 +180,19 @@ app.post('/cart/in-cart', (req,res)=>{
             price: req.body.price,
             quantity: 1
         }
-        req.session.inCart.push(item);
-        console.log(req.session.inCart);
-        res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+        req.user.inCart.push(item);
+        console.log(req.user.inCart);
+        res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
         console.log('empty')
+        req.user.save();
+        console.log(item);
+        console.log("PLEASE WORKKKKKKK3");
+        console.log(req.user.inCart);
     }
 
 
 
 })
-
-
-
-
-
 
 
 //main index

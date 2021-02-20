@@ -84,10 +84,16 @@ router.post('/login', (req,res, next) => {
 
 router.get('/logout', (req,res) => {
     // req.logout();
+    req.flash('success_msg', 'You are logged out');
+    console.log("Do you wanna save A SNOWMAN");
+    console.log(req.sessionID);
+    console.log("Do you wanna save A SNOWMAN, No way man it will melt");
+    console.log(req.session.inCart);
+    req.session.save();
     req.session.regenerate(err => {
         res.redirect('/users/login');
     })
-    req.flash('success_msg', 'You are logged out');
+
     // res.redirect('/users/login');
 })
 

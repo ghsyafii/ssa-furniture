@@ -18,15 +18,15 @@ router.get('/cart', (req,res)=>{
 })
 
 //TODO: Try to destroy entire session
-router.post('/logout', (req, res) => {
-req.session.destroy(err => {
-    if (err) {
-        return console.log(err);
-    }
-    req.session = null;
-    res.redirect('/');
-});
-});
+// router.post('/logout', (req, res) => {
+// req.session.destroy(err => {
+//     if (err) {
+//         return console.log(err);
+//     }
+//     req.session = null;
+//     res.redirect('/');
+// });
+// });
 
 
 router.post('/', productController.product_create_post);
