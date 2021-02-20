@@ -37,7 +37,7 @@
         </div>
 
         <button class="btn btn-primary">Submit</button>
-        <a href="/users/logout" class="btn btn-warning">Log Out</a>
+<!--        <a href="/users/logout" class="btn btn-warning">Log Out</a>-->
     </form>
     <!--    <button class="testjs">JS Test</button>-->
 </div>
@@ -62,16 +62,12 @@
                                     <h5 class="card-title"><%=product.name%></h5>
                                     <p class="card-text">$<%=product.price%></p>
 
-                                    <a class="single" href="/products/<%= product._id %>">
+                                    <a class="single" href="/products/<%= product._id %>"></a>
 <!--                                        <p class="btn btn-warning">Edit product</p>-->
 
                                         <a class="text-primary" href="<%=product._id%>/edit">Edit</a>
                                         &nbsp
-<!--                                        <a class="delete text-danger deletebutton" data-doc="<%= product._id %>">-->
-<!--                                            Delete-->
-<!--                                        </a>-->
 
-                                    </a>
                                 </div>
                             </div></div>
                         <%})%>
@@ -86,27 +82,7 @@
 
 <%- include('../partials/footer.ejs') %>
 
-
 <%- include('../partials/login-modal.ejs') %>
-
-
-
-<!--Add update product here-->
-<!-- UNDER CONSTRUCTION: FOOTER -->
-
-
-
-<!--<script>-->
-
-<!--    const deletebutton = document.querySelector('.deletebutton')-->
-<!--    deletebutton.forEach(item=>{-->
-<!--        item.addEventListener('click', ()=>{-->
-<!--            console.log('click');-->
-<!--        })-->
-<!--    })-->
-
-
-<!--</script>-->
 
 <%- include('../partials/scripts-products.ejs') %>
 
