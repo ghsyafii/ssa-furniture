@@ -13,6 +13,8 @@ const productController = require('../controllers/productController');
 router.get('/products-display', productController.product_index);
 
 
+
+
 router.get('/cart', (req,res)=>{
         if(req.user) {
                 res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})

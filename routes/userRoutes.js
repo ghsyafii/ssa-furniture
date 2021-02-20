@@ -73,7 +73,7 @@ router.post('/register', (req,res) => {
 
 // login handle
 
-router.post('/login', (req,res, next) => {
+router.post('/login', (req,res,next) => {
     passport.authenticate('local', {
         successRedirect: '/products/create',
         failureRedirect: '/users/login',

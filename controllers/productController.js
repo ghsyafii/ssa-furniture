@@ -34,6 +34,7 @@ const product_details = (req,res) => {
 //GET CREATE NEW PRODUCT PAGE
 
 const product_create_get = (req,res) => {
+    if(req.user.isAdmin == true){
     Product.find().sort({ createdAt: -1 })
         .then((result) => {
             //render to this route ie /blogs the index.ejs file and pass the title, and for the blogs, pass the result - refer to index html to see the relationships
@@ -42,6 +43,11 @@ const product_create_get = (req,res) => {
         .catch((error) => {
             console.log(error)
         })
+}
+ else {
+        req.flash('error_msg', 'Please log in to view this resource');
+        res.redirect('/users/login');
+    }
 }
 
 //GET UPDATE PRODUCT %%%%%
