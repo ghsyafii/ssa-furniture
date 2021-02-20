@@ -14,19 +14,25 @@ router.get('/products-display', productController.product_index);
 
 
 router.get('/cart', (req,res)=>{
-    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+        if(req.user) {
+                res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
+        }
+        else{
+                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+        }
+
 })
 
 //TODO: Try to destroy entire session
-router.post('/logout', (req, res) => {
-req.session.destroy(err => {
-    if (err) {
-        return console.log(err);
-    }
-    req.session = null;
-    res.redirect('/');
-});
-});
+// router.post('/logout', (req, res) => {
+// req.session.destroy(err => {
+//     if (err) {
+//         return console.log(err);
+//     }
+//     req.session = null;
+//     res.redirect('/');
+// });
+// });
 
 
 router.post('/', productController.product_create_post);
