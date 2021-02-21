@@ -64,8 +64,20 @@
                                                                 <input type="hidden" name="price" value="<%=cartItems.price%>">
                                                                 <input type="submit"  class="fa fa-sort-up fa-2x" value="&#xf0de" style="background: none;padding:0;border:none;">
                                                             </form>
-                                                            <div><a href=""> <i class="fa fa-sort-down fa-2x"></i></a></div>
-                                                            <div><a href=""> <i class="fa fa-ban fa-2x"></i></a></div>
+                                                            <form action="/cart/out-cart" method="POST">
+                                                                <input type="hidden" name="image" value="<%=cartItems.image%>">
+                                                                <input type="hidden" name="name" value="<%=cartItems.name%>">
+                                                                <input type="hidden" name="_id" value="<%=cartItems._id%>">
+                                                                <input type="hidden" name="price" value="<%=cartItems.price%>">
+                                                                <input type="submit"  class="fa fa-sort-down fa-2x" value="&#xf0dd" style="background: none;padding:0;border:none;">
+                                                            </form>
+                                                            <form action="/cart/remove-cart" method="POST">
+                                                                <input type="hidden" name="image" value="<%=cartItems.image%>">
+                                                                <input type="hidden" name="name" value="<%=cartItems.name%>">
+                                                                <input type="hidden" name="_id" value="<%=cartItems._id%>">
+                                                                <input type="hidden" name="price" value="<%=cartItems.price%>">
+                                                                <input type="submit"  class="fa fa-ban fa-2x" value="&#xf05e" style="background: none;padding:0;border:none;">
+                                                            </form>
                                                         </div>
 
 <!--                                                        <a href="" class="btn btn-light"> Remove</a>-->

@@ -135,7 +135,13 @@ app.get('/', (req, res) => {
             res.render('index', { title: 'Home', isLoggedIn: req.user })
         });
 
+//cart function
+
 app.post('/cart/in-cart', cartController.AddToCart);
+
+app.post('/cart/out-cart', cartController.RemoveFromCart);
+
+app.post('/cart/remove-cart', cartController.DeleteCart);
 
 //about
 app.get('/about', (req, res) => {
