@@ -31,7 +31,6 @@ require('./config/passport')(passport);
 //     collection: 'sessions'
 // });
 
-//TODO: add config to .gitignore to protect password
 const store = new MongoDBStore({
     uri: dbURI,
     collection: 'sessions'
@@ -74,6 +73,13 @@ app.use(passport.session());
 
 //connect flash
 app.use(flash());
+
+app.use(function(req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+});
 
 //morgan middleware
 
@@ -271,9 +277,4 @@ app.use((req, res) => {
 })
 
 //global variables
-app.use(()=> (req,res,next) => {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    next();
-})
+
