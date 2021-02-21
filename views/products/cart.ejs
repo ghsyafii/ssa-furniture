@@ -114,11 +114,14 @@
                                                     <% cartItems.forEach(cartItems => { %>
                                                         <%sum += cartItems.price * cartItems.quantity%>
                                                         <%})%>
-                                                    <%} else {%>
-                                                        <p>Your cart is super empty.</p>
-                                                    <%}%>
-                                                        <dt>Total price=<br> <%=sum%></dt>
-                                                        <dd class="text-right">SGD </dd>
+                                                        <dt>Total price:</dt>$<%=sum%>
+                                                        <dd class="text-right">SGD</dd>
+
+                                                <%} else {%>
+                                                        <dt>Total price:</dt> $0
+                                                        <dd class="text-right">SGD</dd>
+
+                                                        <%}%>
 
                                                 </dl>
 
