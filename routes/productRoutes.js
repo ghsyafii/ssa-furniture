@@ -2,18 +2,15 @@
 
 const express = require('express');
 const router = express.Router();
-const cartItems = require('../models/cart-items');
 const { ensureAuthenticated } = require('../config/auth');
 
 
 //import product_index
 const productController = require('../controllers/productController');
+const cartController = require('../controllers/cartController');
 
 //product routes
 router.get('/products-display', productController.product_index);
-
-
-
 
 router.get('/cart', (req,res)=>{
         if(req.user) {
@@ -24,18 +21,6 @@ router.get('/cart', (req,res)=>{
         }
 
 })
-
-//TODO: Try to destroy entire session
-// router.post('/logout', (req, res) => {
-// req.session.destroy(err => {
-//     if (err) {
-//         return console.log(err);
-//     }
-//     req.session = null;
-//     res.redirect('/');
-// });
-// });
-
 
 router.post('/', productController.product_create_post);
 

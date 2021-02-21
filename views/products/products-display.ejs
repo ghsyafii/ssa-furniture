@@ -30,6 +30,7 @@
                                     <p>Click here for details.</p>
                                 </a>
                     <form action="/cart/in-cart" method="POST">
+                        <input type="hidden" name="image" value="<%=product.imageURL%>">
                         <input type="hidden" name="name" value="<%=product.name%>">
                         <input type="hidden" name="_id" value="<%=product._id%>">
                         <input type="hidden" name="price" value="<%=product.price%>">
