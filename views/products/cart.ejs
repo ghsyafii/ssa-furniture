@@ -7,52 +7,130 @@
 
 <%- include('../partials/nav-products.ejs') %>
 
-
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Shopping Cart</h1>
+    </div>
+</div>
+<div class="container">
             <div class="row">
                 <div id="cards" class="card-group testcarts">
-                    <% if (cartItems)
-                    {%>
-                        <% cartItems.forEach(cartItems => { %>
+                            <div class="container">
+
+                                <div class="row">
+                                    <main class="col-md-9">
+                                        <div class="card">
+                                            <% if (cartItems){%>
+                                                <% cartItems.forEach(cartItems => { %>
+
+                                            <table class="table table-borderless table-shopping-cart">
+                                                <thead class="text-muted">
+                                                <tr class="small text-uppercase">
+                                                    <th scope="col">Product</th>
+                                                    <th scope="col" width="120">Quantity</th>
+                                                    <th scope="col" width="120">Price</th>
+                                                    <th scope="col" class="text-right" width="200"> </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+
+                                                            <figure class="itemside">
+                                                                <div class="aside">
+                                                                    <img src="<%=cartItems.image%>" class="img-sm img-fluid" style="height:auto; width: 50%;">
+                                                                </div>
+                                                            <figcaption class="info">
+                                                                <a href="#" class="title text-dark"><%=cartItems.name%></a>
+                                                                <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </td>
+                                                    <td>
+                                                       <p><%=cartItems.quantity%></p>
+                                                    </td>
+                                                    <td>
+                                                        <div class="price-wrap">
+                                                            <var class="price">$<%=cartItems.price * cartItems.quantity%></var>
+                                                            <small class="text-muted">$<%=cartItems.price%> </small>
+                                                        </div> <!-- price-wrap .// -->
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <div style="display:flex;justify-content:space-around;">
+                                                            <form action="/cart/in-cart" method="POST">
+                                                                <input type="hidden" name="image" value="<%=cartItems.image%>">
+                                                                <input type="hidden" name="name" value="<%=cartItems.name%>">
+                                                                <input type="hidden" name="_id" value="<%=cartItems._id%>">
+                                                                <input type="hidden" name="price" value="<%=cartItems.price%>">
+                                                                <input type="submit"  class="fa fa-sort-up fa-2x" value="&#xf0de" style="background: none;padding:0;border:none;">
+                                                            </form>
+                                                            <form action="/cart/out-cart" method="POST">
+                                                                <input type="hidden" name="image" value="<%=cartItems.image%>">
+                                                                <input type="hidden" name="name" value="<%=cartItems.name%>">
+                                                                <input type="hidden" name="_id" value="<%=cartItems._id%>">
+                                                                <input type="hidden" name="price" value="<%=cartItems.price%>">
+                                                                <input type="submit"  class="fa fa-sort-down fa-2x" value="&#xf0dd" style="background: none;padding:0;border:none;">
+                                                            </form>
+                                                            <form action="/cart/remove-cart" method="POST">
+                                                                <input type="hidden" name="image" value="<%=cartItems.image%>">
+                                                                <input type="hidden" name="name" value="<%=cartItems.name%>">
+                                                                <input type="hidden" name="_id" value="<%=cartItems._id%>">
+                                                                <input type="hidden" name="price" value="<%=cartItems.price%>">
+                                                                <input type="submit"  class="fa fa-ban fa-2x" value="&#xf05e" style="background: none;padding:0;border:none;">
+                                                            </form>
+                                                        </div>
+
+<!--                                                        <a href="" class="btn btn-light"> Remove</a>-->
+                                                    </td>
+
+                                                    <%})%>
+                                                    <%} else {%>
+                                                        <p>Your cart is super empty.</p>
+                                                    <%}%>
+                                                </tr>
+                                                </tbody>
+                                            </table>
 
 
-                                <div class="card-body">
-                                    <h5 class="card-title"><%=cartItems.name%></h5>
-                                    <p class="card-text">$<%=cartItems.price%></p>
-                                    <p class="card-text">Quantity: <%=cartItems.quantity%></p>
-                                    <form>
-                                   <input type="submit" class="remove-one" value="remove">
-                                    </form>
+                                            <div class="card-body border-top">
+                                                <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+                                                <a href="#" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+                                            </div>
+                                        </div> <!-- card.// -->
 
-                                    <a class="single" href="/products/<%= cartItems._id %>"></a>
-                                        <!--                                        <p class="btn btn-warning">Edit product</p>-->
+                                        <div class="alert alert-success mt-3">
+                                            <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+                                        </div>
 
-<!--                                        <a class="text-primary" href="<%=cartItems._id%>/edit">Edit</a>-->
+                                    </main> <!-- col.// -->
+                                    <aside class="col-md-3">
+                                        <div class="card mb-3">
+                                        </div>  <!-- card .// -->
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <dl class="dlist-align">
+                                                    <dt>Total price:</dt>
+                                                    <dd class="text-right">SGD </dd>
+                                                </dl>
+                                                <button class="btn btn-secondary" onclick="ClearStorage()">Clear Cart</button>
 
+                                            </div> <!-- card-body.// -->
+                                        </div>  <!-- card .// -->
+                                    </aside> <!-- col.// -->
                                 </div>
 
-                        <%})%>
-                    <%} else {%>
-                        <p>Your cart is super empty.</p>
-                    <%}%>
+                            </div>
+
+
+
                 </div>
+
             </div>
+</div>
 
 
 
 <!-- horizontal end-->
-<div class="totalPriceBox">
-    <h5>Total Price:</h5>
-    <p class="totalPrice"></p>
-
-</div>
-
-<div>
-    <button class="btn btn-secondary" onclick="ClearStorage()">Clear Cart</button>
-    <button class="btn btn-success checkoutbtn"><a href="form.html">Check Out</a></button>
-</div>
-
-<div id="confirmclear"></div>
-
 <br>
 <%- include('../partials/footer.ejs') %>
 

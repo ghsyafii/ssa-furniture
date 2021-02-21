@@ -2,40 +2,31 @@
 
 const express = require('express');
 const router = express.Router();
-const cartItems = require('../models/cart-items');
 const { ensureAuthenticated } = require('../config/auth');
 
 
 //import product_index
 const productController = require('../controllers/productController');
+const cartController = require('../controllers/cartController');
 
 //product routes
 router.get('/products-display', productController.product_index);
 
-
-
-
 router.get('/cart', (req,res)=>{
         if(req.user) {
-                res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
+                if(req.user.inCart.length !== 0){
+                        res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})}
+                else{
+                        req.user.inCart = req.session.inCart;
+                        req.user.save();
+                        res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
+                }
         }
         else{
                 res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
         }
 
 })
-
-//TODO: Try to destroy entire session
-// router.post('/logout', (req, res) => {
-// req.session.destroy(err => {
-//     if (err) {
-//         return console.log(err);
-//     }
-//     req.session = null;
-//     res.redirect('/');
-// });
-// });
-
 
 router.post('/', productController.product_create_post);
 

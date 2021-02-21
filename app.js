@@ -5,12 +5,12 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
-const cartItems = require('./models/cart-items')
 const methodOverride = require('method-override');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const passport = require('passport');
+const cartController = require('./controllers/cartController');
 
 const PORT = process.env.PORT || 4000;
 var MongoDBStore = require('connect-mongodb-session')(session);
@@ -101,160 +101,18 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 
 
-// app.post('/cart/in-cart', (req,res)=>{
-// //naming the array within session cookie as inCart and storing as accordingly
-//     req.session.inCart = req.session.inCart||[];
-//             console.log("yes");
-//     (req.session.name);
-//             console.log(req.session.inCart);
-//             if(req.session.name !== "undefined") {
-//                 let item = {
-//                     name: req.body.name,
-//                     price: req.body.price,
-//                     quantity: 1
-//                 }
-//                 req.session.inCart.push(item);
-//                 console.log(req.session.inCart);
-//                 res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-//                 console.log('booo')
-//             }else{
-//                 console.log("ollaaaaa")
-//                 let x = req.body
-//                 let item = {
-//                     name: req.body.name,
-//                     price: req.body.price,
-//                     quantity: 1
-//                 }
-//                 req.session.inCart.push(item);
-//                 console.log(req.session.inCart);
-//                 res.render('products/cart', {cartItems: req.session.inCart, title: "Cart"})
-//                 console.log('empty')
-//             }
-//
-//
-//
-// })
-
-app.post('/cart/in-cart', (req,res)=>{
-//naming the array within session cookie as inCart and storing as accordingly
-
-    if(req.user){
-        var value = 1;
-    }
-    else{
-        var value = 2;
-    }
-
-    switch(value){
-        case 1:
-            req.session.inCart = req.user.inCart||[];
-            console.log("HELLOOPOOOOOO");
-            console.log(req.user.inCart);
-            if(Array.isArray(req.session.inCart)&& req.session.inCart.length>0) {
-                var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
-                console.log(itemLocation);
-                if (itemLocation !== -1) {
-                    req.session.inCart.forEach(item => {
-                        if (req.body.name === item.name) {
-                            console.log("I found it" + item.name);
-                            item.quantity += 1;
-                            req.session.inCart.splice(itemLocation, 1, item);
-                        }
-
-                    })
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-                } else{
-                    console.log("this is neww yayyyyyyyyyyyyyyy");
-                    let item2 = {
-                        name: req.body.name,
-                        price: req.body.price,
-                        quantity: 1
-                    }
-                    req.session.inCart.push(item2);
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-                    console.log("PLEASE WORKKKKKKK2");
-                }
-
-
-            }else{
-                console.log("ollaaaaa")
-                let item = {
-                    name: req.body.name,
-                    price: req.body.price,
-                    quantity: 1
-                }
-                req.session.inCart.push(item);
-                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-                console.log("PLEASE WORKKKKKKK3");
-            }
-
-            req.user.inCart = req.session.inCart;
-            req.user.save();
-
-            break;
-
-        case 2:
-            req.session.inCart = req.session.inCart||[];
-            console.log("move it move it");
-            if(Array.isArray(req.session.inCart)&& req.session.inCart.length>0) {
-                var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
-                console.log(itemLocation);
-                if (itemLocation !== -1) {
-                    req.session.inCart.forEach(item => {
-                        if (req.body.name === item.name) {
-                            console.log("I found it" + item.name);
-                            item.quantity += 1;
-                            req.session.inCart.splice(itemLocation, 1, item);
-                        }
-                        console.log(req.session.inCart);
-
-
-                    })
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-                } else{
-
-                    let item2 = {
-                        name: req.body.name,
-                        price: req.body.price,
-                        quantity: 1
-                    }
-                    req.session.inCart.push(item2);
-
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-                    console.log('misleading text here, sorry to ollaaaaa unit');
-                }
-
-
-            }else{
-                console.log("ollaaaaa")
-                let item = {
-                    name: req.body.name,
-                    price: req.body.price,
-                    quantity: 1
-                }
-                req.session.inCart.push(item);
-
-                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-
-            }
-            break;
-
-        default:
-            console.log("nothing");
-            break;
-
-    }//switch ends here
-
-
-})
-
-
 //main index
 app.get('/', (req, res) => {
             res.render('index', { title: 'Home', isLoggedIn: req.user })
         });
 
+//cart function
 
+app.post('/cart/in-cart', cartController.AddToCart);
+
+app.post('/cart/out-cart', cartController.RemoveFromCart);
+
+app.post('/cart/remove-cart', cartController.DeleteCart);
 
 //about
 app.get('/about', (req, res) => {

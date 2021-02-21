@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "bcrypt": "^5.0.0",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.4.1",
