@@ -95,41 +95,6 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 
 
-// app.post('/cart/in-cart', (req,res)=>{
-// //naming the array within session cookie as inCart and storing as accordingly
-//     req.session.inCart = req.session.inCart||[];
-//             console.log("yes");
-//     (req.session.name);
-//             console.log(req.session.inCart);
-//             if(req.session.name !== "undefined") {
-//                 let item = {
-//                     name: req.body.name,
-//                     price: req.body.price,
-//                     quantity: 1
-//                 }
-//                 req.session.inCart.push(item);
-//                 console.log(req.session.inCart);
-//                 res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-//                 console.log('booo')
-//             }else{
-//                 console.log("ollaaaaa")
-//                 let x = req.body
-//                 let item = {
-//                     name: req.body.name,
-//                     price: req.body.price,
-//                     quantity: 1
-//                 }
-//                 req.session.inCart.push(item);
-//                 console.log(req.session.inCart);
-//                 res.render('products/cart', {cartItems: req.session.inCart, title: "Cart"})
-//                 console.log('empty')
-//             }
-//
-//
-//
-// })
-
-
 //main index
 app.get('/', (req, res) => {
             res.render('index', { title: 'Home', isLoggedIn: req.user })
