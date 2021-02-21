@@ -277,7 +277,7 @@ const DeleteCart = (req,res)=>{
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
                             console.log("I found it" + item.name);
-                            item.quantity -= 1;
+                            item.quantity -= item.quantity;
                             if (item.quantity === 0) {
                                 req.session.inCart.splice(itemLocation, 1);
                             }
