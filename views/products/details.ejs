@@ -17,7 +17,7 @@
             <div class="content">
                 <p style="white-space: pre-line;"><%= product.description %></p>
                 <p style="white-space: pre-line;">$<%= product.price %></p>
-                <form action="/cart/add" method="POST">
+                <form action="/cart/in-cart" method="POST">
                     <input type="hidden" name="name" value="<%=product.name%>">
                     <input type="hidden" name="_id" value="<%=product._id%>">
                     <input type="hidden" name="price" value="<%=product.price%>">
