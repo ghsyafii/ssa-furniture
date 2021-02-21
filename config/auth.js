@@ -12,7 +12,7 @@ function ensureAuthenticated(req,res,next) {
     if(req.isAuthenticated()){
         return next();
     } else
-        req.flash('error_msg', 'Please log in to view this resource');
+        req.flash('error_msg', 'Only administrators can view that page.');
     res.redirect('/users/login');
 }
 
