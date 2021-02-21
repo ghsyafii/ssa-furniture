@@ -8,8 +8,9 @@
 <%- include('../partials/nav-products.ejs') %>
 
 <div class="products content">
-    <h2>All Products</h2>
     <div class="container-fluid">
+        <h2>Shop</h2>
+
         <div class="row">
         </div>
         <div class="row">
@@ -18,25 +19,25 @@
     {%>
         <% products.forEach(product => { %>
 
-        <div class="col-sm-3"><div class="card p-2 border border-dark mb-4">
-                <img class="card-img-top animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image">
+        <div class="col-sm-6 col-md-3"><div class="card p-2 border border-dark mb-4">
+                <a href="/products/<%= product._id %>"><img class="card-img-top animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image"></a>
                 <div class="card-body">
-                    <h5 class="card-title"><%=product.name%></h5>
+                    <a class="text-dark" href="/products/<%= product._id %>"><h5 class="card-title"><%=product.name%></h5>
 
-                    <p class="card-text">$<%=product.price%></p>
+                    <p class="card-text">$<%=product.price%></p></a>
 
 
-                            <a class="single" href="/products/<%= product._id %>">
-                                    <p>Click here for details.</p>
-                                </a>
-                    <form action="/cart/in-cart" method="POST">
-                        <input type="hidden" name="image" value="<%=product.imageURL%>">
-                        <input type="hidden" name="name" value="<%=product.name%>">
-                        <input type="hidden" name="_id" value="<%=product._id%>">
-                        <input type="hidden" name="price" value="<%=product.price%>">
-                        <input type="hidden" name="image" value="<%=product.imageURL%>">
-                    <input id="addToCart" type="submit" class="btn btn-warning" value="Add to cart">
-                    </form>
+<!--                            <a class="single" href="/products/<%= product._id %>">-->
+<!--                                    <p>Click here for details.</p>-->
+<!--                                </a>-->
+<!--                    <form action="/cart/in-cart" method="POST">-->
+<!--                        <input type="hidden" name="image" value="<%=product.imageURL%>">-->
+<!--                        <input type="hidden" name="name" value="<%=product.name%>">-->
+<!--                        <input type="hidden" name="_id" value="<%=product._id%>">-->
+<!--                        <input type="hidden" name="price" value="<%=product.price%>">-->
+<!--                        <input type="hidden" name="image" value="<%=product.imageURL%>">-->
+<!--                    <input id="addToCart" type="submit" class="btn btn-warning btn-block" value="Add to cart">-->
+<!--                    </form>-->
                 </div>
             </div></div>
 

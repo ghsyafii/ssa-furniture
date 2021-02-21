@@ -9,10 +9,10 @@
 
 <div class="details content container">
     <div class="row">
-        <div class="col-6">
-            <img class="animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image" style="max-width: 70%">
+        <div id="cards" class="col-lg-6">
+            <img class="animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="product image">
         </div>
-        <div class="col-6 my-auto border border-dark p-5 rounded">
+        <div class="col-lg-6">
             <h2><%=product.name%></h2>
             <div class="content">
                 <p style="white-space: pre-line;"><%= product.description %></p>
