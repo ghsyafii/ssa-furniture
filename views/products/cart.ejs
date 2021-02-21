@@ -109,9 +109,19 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <dl class="dlist-align">
-                                                    <dt>Total price:</dt>
-                                                    <dd class="text-right">SGD </dd>
+                                                    <% if (cartItems){%>
+                                                        <%var sum = 0;%>
+                                                    <% cartItems.forEach(cartItems => { %>
+                                                        <%sum += cartItems.price * cartItems.quantity%>
+                                                        <%})%>
+                                                    <%} else {%>
+                                                        <p>Your cart is super empty.</p>
+                                                    <%}%>
+                                                        <dt>Total price=<br> <%=sum%></dt>
+                                                        <dd class="text-right">SGD </dd>
+
                                                 </dl>
+
 
                                             </div> <!-- card-body.// -->
                                         </div>  <!-- card .// -->
