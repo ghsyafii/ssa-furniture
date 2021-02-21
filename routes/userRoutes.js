@@ -22,11 +22,11 @@ router.post('/register', (req,res) => {
 
     //check required fields
     if(!name || !email || !password) {
-        errors.push({msg: 'Please fill in all fields.'})
+        errors.push({msg: 'Please fill in all fields.', isLoggedIn: req.user})
     }
     //check pass length
     if(password.length < 6) {
-        errors.push({msg: 'Password should be at least 6 characters.'})
+        errors.push({msg: 'Password should be at least 6 characters.', isLoggedIn: req.user})
     }
 
     if(errors.length > 0) {
@@ -34,7 +34,8 @@ router.post('/register', (req,res) => {
             errors,
             name,
             email,
-            password
+            password,
+            isLoggedIn: req.user
         })
     } else {
         //validation passed
@@ -47,7 +48,8 @@ router.post('/register', (req,res) => {
                         errors,
                         name,
                         email,
-                        password
+                        password,
+                        isLoggedIn: req.user
                     })
                 } else {
                     const newUser = new User({
@@ -97,7 +99,5 @@ router.get('/logout', (req,res) => {
 
     // res.redirect('/users/login');
 })
-
-
 
 module.exports = router;
