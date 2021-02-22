@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <main class="col-md-9">
                                         <div class="card">
-                                            <% if (cartItems){%>
+                                            <% if (cartItems.length > 0){%>
                                                 <% cartItems.forEach(cartItems => { %>
 
                                             <table class="table table-borderless table-shopping-cart">
@@ -42,7 +42,7 @@
                                                                 </div>
                                                             <figcaption class="info">
                                                                 <a href="#" class="title text-dark"><%=cartItems.name%></a>
-                                                                <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
+<!--                                                                <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>-->
                                                             </figcaption>
                                                         </figure>
                                                     </td>
@@ -85,7 +85,11 @@
 
                                                     <%})%>
                                                     <%} else {%>
-                                                        <p>Your cart is super empty.</p>
+                                                    <div class="col">
+
+                                                        <h1>Your cart is super empty.</h1>
+
+                                                    </div>
                                                     <%}%>
                                                 </tr>
                                                 </tbody>
