@@ -221,11 +221,9 @@ body {
 /*    text-decoration: ;*/
 /*}*/
 
-footer {
-    /*background-color: lightcoral;*/
-    justify-content: center;
-}
-
-footer a {
-    /*background-color: greenyellow;*/
-}
+/*footer {*/
+/*    position: fixed;*/
+/*    height: 100px;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*}*/
