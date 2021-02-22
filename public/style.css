@@ -221,4 +221,11 @@ body {
 /*    text-decoration: ;*/
 /*}*/
 
+footer {
+    /*background-color: lightcoral;*/
+    justify-content: center;
+}
 
+footer a {
+    /*background-color: greenyellow;*/
+}
