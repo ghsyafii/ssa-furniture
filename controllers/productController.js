@@ -85,8 +85,6 @@ const product_update_put = async (req,res) => {
     const id = req.params.id;
     const product = await Product.findByIdAndUpdate(id, req.body, {runValidators: true, new: true});
     res.redirect(`/products/${id}`)
-    // console.log(req.body);
-    // res.send('PUT!!!');
 }
 
 module.exports = { product_index, product_details, product_create_get, product_create_post, product_delete, product_update_put, product_update_get }
