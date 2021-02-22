@@ -222,3 +222,18 @@ body {
 /*}*/
 
 
+.icon-ctrl{
+    background: none;
+    padding:0;
+    border:none;
+    color: grey;
+}
+
+.cart-bg{
+    background: url("https://images.unsplash.com/photo-1498766707495-856f300a5821?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80");
+}
+
+.display-4{
+    display: flex;
+    justify-content: flex-end;
+}

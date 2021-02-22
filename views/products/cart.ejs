@@ -7,13 +7,13 @@
 
 <%- include('../partials/nav-products.ejs') %>
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid cart-bg">
     <div class="container">
         <h1 class="display-4">Shopping Cart</h1>
     </div>
 </div>
 <div class="container">
-            
+
                 <div id="cards" class="card-group testcarts">
                             <div class="container">
 
@@ -62,21 +62,21 @@
                                                                 <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                                 <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                                 <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <input type="submit"  class="fa fa-sort-up fa-2x" value="&#xf0de" style="background: none;padding:0;border:none;">
+                                                                <input type="submit"  class="icon-ctrl fa fa-sort-up fa-2x" value="&#xf0de" style="background: none;padding:0;border:none;">
                                                             </form>
                                                             <form action="/cart/out-cart" method="POST">
                                                                 <input type="hidden" name="image" value="<%=cartItems.image%>">
                                                                 <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                                 <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                                 <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <input type="submit"  class="fa fa-sort-down fa-2x" value="&#xf0dd" style="background: none;padding:0;border:none;">
+                                                                <input type="submit"  class="icon-ctrl fa fa-sort-down fa-2x" value="&#xf0dd">
                                                             </form>
                                                             <form action="/cart/remove-cart" method="POST">
                                                                 <input type="hidden" name="image" value="<%=cartItems.image%>">
                                                                 <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                                 <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                                 <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <input type="submit"  class="fa fa-ban fa-2x" value="&#xf05e" style="background: none;padding:0;border:none;">
+                                                                <input type="submit"  class="icon-ctrl fa fa-ban fa-2x" value="&#xf05e">
                                                             </form>
                                                         </div>
 
@@ -93,8 +93,8 @@
 
 
                                             <div class="card-body border-top">
-                                                <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-                                                <a href="./products-display" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+                                                <a href="#" class="btn btn-warning float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+                                                <a href="./products-display" class="btn btn-secondary"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
                                             </div>
                                         </div> <!-- card.// -->
 
