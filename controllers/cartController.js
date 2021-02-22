@@ -86,7 +86,7 @@ const AddToCart = (req,res)=>{
 
 
                     })
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                    res.redirect("/products/cart");
                 } else{
 
                     let item2 = {
@@ -96,8 +96,7 @@ const AddToCart = (req,res)=>{
                         quantity: 1
                     }
                     req.session.inCart.push(item2);
-
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                    res.redirect("/products/cart");
                     console.log('misleading text here, sorry to ollaaaaa unit');
                 }
 
@@ -112,7 +111,7 @@ const AddToCart = (req,res)=>{
                 }
                 req.session.inCart.push(item);
 
-                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                res.redirect("/products/cart");
 
             }
             break;
@@ -159,7 +158,7 @@ const RemoveFromCart = (req,res)=>{
                         }
 
                     })
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                    res.redirect("/products/cart");
                 } else{
                     console.log("no such thing la");
                 }
@@ -174,7 +173,7 @@ const RemoveFromCart = (req,res)=>{
                     quantity: 1
                 }
                 req.session.inCart.push(item);
-                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                res.redirect("/products/cart");
                 console.log("Pray to god please");
             }
 
@@ -204,7 +203,7 @@ const RemoveFromCart = (req,res)=>{
                         }
 
                     })
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                    res.redirect("/products/cart");
                 } else{
                     console.log("hello it really isnt here friend")
                 }
@@ -252,7 +251,7 @@ const DeleteCart = (req,res)=>{
                         }
 
                     })
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                    res.redirect("/products/cart");
                 } else{
                     console.log("no such thing la");
                 }
@@ -288,7 +287,7 @@ const DeleteCart = (req,res)=>{
                         }
 
                     })
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                    res.redirect("/products/cart");
                 } else{
                     console.log("hello it really isnt here friend")
                 }
