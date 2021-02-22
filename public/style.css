@@ -227,3 +227,23 @@ body {
 /*    bottom: 0;*/
 /*    width: 100%;*/
 /*}*/
+
+hr {
+    border: 0.03em solid black;
+}
+
+/*.footer {*/
+/*    position: relative;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+
+
+/*}*/
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
