@@ -147,7 +147,7 @@ const RemoveFromCart = (req,res)=>{
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
                             console.log("I found it" + item.name);
-                            item.quantity -= 1;
+                            item.quantity = req.body.quantity;
                             if(item.quantity ===0){
                                 req.session.inCart.splice(itemLocation, 1);
                             }
@@ -191,19 +191,28 @@ const RemoveFromCart = (req,res)=>{
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
-                            console.log("I found it" + item.name);
-                                item.quantity -= 1;
-                            if (item.quantity === 0) {
+                            if (req.body.quantity === "0") {
                                 req.session.inCart.splice(itemLocation, 1);
                             }
                             else{
+                                let item = {
+                                    name: req.body.name,
+                                    image: req.body.image,
+                                    price: req.body.price,
+                                    quantity: parseInt(req.body.quantity)
+                                }
                                 req.session.inCart.splice(itemLocation, 1, item);
+                                console.log(req.session.inCart);
                             }
+                            console.log("I found it" + item.name);
+                            // res.render("products/cart", {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user});
+                            res.redirect("/products/cart");
 
                         }
 
+
                     })
-                    res.redirect("/products/cart");
+
                 } else{
                     console.log("hello it really isnt here friend")
                 }
@@ -241,17 +250,19 @@ const DeleteCart = (req,res)=>{
                         if (req.body.name === item.name) {
                             console.log("I found it" + item.name);
                             item.quantity -= item.quantity;
-                            if(item.quantity ===0){
+                            if(item.quantity === 0){
                                 req.session.inCart.splice(itemLocation, 1);
+                                res.redirect("/products/cart");
                             }
                             else{
                                 req.session.inCart.splice(itemLocation, 1, item);
+                                res.redirect("/products/cart");
                             }
 
                         }
 
                     })
-                    res.redirect("/products/cart");
+
                 } else{
                     console.log("no such thing la");
                 }
@@ -279,6 +290,7 @@ const DeleteCart = (req,res)=>{
                             item.quantity -= item.quantity;
                             if (item.quantity === 0) {
                                 req.session.inCart.splice(itemLocation, 1);
+                                res.redirect("/products/cart");
                             }
                             else{
                                 req.session.inCart.splice(itemLocation, 1, item);
@@ -287,7 +299,7 @@ const DeleteCart = (req,res)=>{
                         }
 
                     })
-                    res.redirect("/products/cart");
+
                 } else{
                     console.log("hello it really isnt here friend")
                 }

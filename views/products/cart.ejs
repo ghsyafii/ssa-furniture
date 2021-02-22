@@ -47,7 +47,9 @@
                                                         </figure>
                                                     </td>
                                                     <td>
-                                                       <p><%=cartItems.quantity%></p>
+                                                        <form action="/cart/out-cart" method="POST">
+                                                        <input type="text" value ="<%=cartItems.quantity%>" size="1" name="quantity">
+
                                                     </td>
                                                     <td>
                                                         <div class="price-wrap">
@@ -57,20 +59,13 @@
                                                     </td>
                                                     <td class="text-right">
                                                         <div style="display:flex;justify-content:space-around;">
-                                                            <form action="/cart/in-cart" method="POST">
-                                                                <input type="hidden" name="image" value="<%=cartItems.image%>">
-                                                                <input type="hidden" name="name" value="<%=cartItems.name%>">
-                                                                <input type="hidden" name="_id" value="<%=cartItems._id%>">
-                                                                <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <input type="submit"  class="fa fa-sort-up fa-2x" value="&#xf0de" style="background: none;padding:0;border:none;">
+                                                            <input type="hidden" name="image" value="<%=cartItems.image%>">
+                                                            <input type="hidden" name="name" value="<%=cartItems.name%>">
+                                                            <input type="hidden" name="_id" value="<%=cartItems._id%>">
+                                                            <input type="hidden" name="price" value="<%=cartItems.price%>">
+                                                            <input type="submit"  class="fa fa-pen-nib fa-1x" value="&#xf5ac Update" style="background: none;padding:0;border:none;">
                                                             </form>
-                                                            <form action="/cart/out-cart" method="POST">
-                                                                <input type="hidden" name="image" value="<%=cartItems.image%>">
-                                                                <input type="hidden" name="name" value="<%=cartItems.name%>">
-                                                                <input type="hidden" name="_id" value="<%=cartItems._id%>">
-                                                                <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <input type="submit"  class="fa fa-sort-down fa-2x" value="&#xf0dd" style="background: none;padding:0;border:none;">
-                                                            </form>
+
                                                             <form action="/cart/remove-cart" method="POST">
                                                                 <input type="hidden" name="image" value="<%=cartItems.image%>">
                                                                 <input type="hidden" name="name" value="<%=cartItems.name%>">
