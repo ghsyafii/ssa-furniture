@@ -19,10 +19,10 @@
 //         myModal.style.display = "none";
 // });
 
-span.addEventListener('click', function () {
-    if (myModal.style.display == "block")
-        myModal.style.display = "none";
-})
+// span.addEventListener('click', function () {
+//     if (myModal.style.display == "block")
+//         myModal.style.display = "none";
+// })
 
 //close window when click outside of form
 
@@ -83,16 +83,16 @@ addToLocalStorage = (event) => {
     }
 }
 
-enterInfo.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (checkBox.checked == false) {
-        alert("Kindly check the terms and condition.");
-    } else {
-        addToLocalStorage();
-        signUpForm.reset();
-    }
-
-});
+// enterInfo.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     if (checkBox.checked == false) {
+//         alert("Kindly check the terms and condition.");
+//     } else {
+//         addToLocalStorage();
+//         signUpForm.reset();
+//     }
+//
+// });
 
 function addInfo() {
     const addStuff = {
