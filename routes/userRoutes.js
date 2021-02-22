@@ -75,14 +75,26 @@ router.post('/register', (req,res) => {
 
 // login handle
 
-router.post('/login', (req,res,next) => {
-    console.log(req.user)
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req,res,next)
-});
+// router.post('/login', (req,res,next) => {
+//     passport.authenticate('local', {
+//         successRedirect: '/',
+//         failureRedirect: '/users/login',
+//         failureFlash: true
+//     })(req,res,next)
+// });
+
+//redirect admin to create page instead of index
+
+router.post('/login',
+    passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: true }),
+    function(req, res) {
+        if (req.user.isAdmin == true){
+            res.redirect('/products/create')
+        }
+        else if (req.user) {
+            res.redirect('/')
+        }
+    });
 
 //logout handle
 

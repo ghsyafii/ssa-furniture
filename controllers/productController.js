@@ -45,7 +45,7 @@ const product_create_get = (req,res) => {
         })
 }
  else {
-        req.flash('error_msg', 'Please log in to view this resource');
+        req.flash('error_msg', 'Only administrators can view that page.');
         res.redirect('/users/login');
     }
 }
