@@ -12,6 +12,9 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const cartController = require('./controllers/cartController');
 
+const Product = require('./models/product');
+
+
 const PORT = process.env.PORT || 4000;
 var MongoDBStore = require('connect-mongodb-session')(session);
 const dbURI = require('./config/keys').MongoURI
@@ -103,7 +106,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //main index
 app.get('/', (req, res) => {
-            res.render('index', { title: 'Home', isLoggedIn: req.user })
+            Product.find().sort({ createdAt: -1 })
+                .then(result => {
+                    res.render('index', { title: 'Home', isLoggedIn: req.user, products: result })
+                })
         });
 
 //cart function
