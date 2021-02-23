@@ -29,7 +29,7 @@
                                                     <th scope="col">Product</th>
                                                     <th scope="col" width="120">Quantity</th>
                                                     <th scope="col" width="120">Price</th>
-                                                    <th scope="col" class="text-right" width="200"> </th>
+                                                    <th scope="col" class="text-right-cart" width="200"> </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -57,7 +57,7 @@
                                                             <small class="text-muted">$<%=cartItems.price%> </small>
                                                         </div> <!-- price-wrap .// -->
                                                     </td>
-                                                    <td class="text-right">
+                                                    <td class="text-right-cart">
                                                         <div style="display:flex;justify-content:space-around;">
                                                             <input type="hidden" name="image" value="<%=cartItems.image%>">
                                                             <input type="hidden" name="name" value="<%=cartItems.name%>">
@@ -117,10 +117,10 @@
                                                         <%sum += cartItems.price * cartItems.quantity%>
                                                         <%})%>
                                                         <dt>Total price:</dt>$<%=sum%>
-                                                        <dd class="text-right">SGD</dd>
+                                                        <dd class="text-right-cart">SGD</dd>
                                                 <%} else {%>
                                                         <dt>Total price:</dt> $0
-                                                        <dd class="text-right">SGD</dd>
+                                                        <dd class="text-right-cart">SGD</dd>
 
                                                         <%}%>
 
