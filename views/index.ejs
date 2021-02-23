@@ -39,6 +39,37 @@
         </div>
     </div>
 
+    <div class="products content">
+        <div class="container-fluid">
+            <h2>New In</h2>
+
+            <div class="row">
+            </div>
+            <div class="row">
+                <div id="cards" class="card-group testcarts">
+                    <% if (products.length > 0)
+                    {%>
+                        <% for (let i = 0; i < 4; i++) { %>
+
+                            <div class="col-sm-6 col-md-3"><div class="card p-2 border border-dark mb-4">
+                                    <a href="/products/<%= products[i]._id %>"><img class="card-img-top animate__animated animate__fadeIn" src="<%=products[i].imageURL%>" alt="<%=products[i].imageURL%>"></a>
+                                    <div class="card-body">
+                                        <a class="text-dark" href="/products/<%= products[i]._id %>"><h5 class="card-title"><%=products[i].name%></h5>
+
+                                            <p class="card-text">$<%=products[i].price%></p></a>
+
+                                    </div>
+                                </div></div>
+
+                        <%}%>
+                    <%} else {%>
+                        <p>There are no products to display.</p>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <!--        <section class="subscription">-->
 <!--            <div class="container">-->
 <!--                <div class="row">-->
