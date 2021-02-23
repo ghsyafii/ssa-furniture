@@ -1,13 +1,3 @@
-// var carts = document.querySelectorAll('#addToCart');
-// for (let i = 0; i < carts.length; i++) {
-//     carts[i].addEventListener('click', () => {
-//        console.log(carts[i].value);
-//     })}
-
-const express = require('express');
-const session = require('express-session');
-
-
 const AddToCart = (req,res)=>{
 //naming the array within session cookie as inCart and storing as accordingly
     if(req.user){
