@@ -7,20 +7,20 @@
 
 <%- include('../partials/nav-products.ejs') %>
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid cart-bg col-sm">
     <div class="container">
         <h1 class="display-4">Shopping Cart</h1>
     </div>
 </div>
 <div class="container">
-            <div class="row">
+
                 <div id="cards" class="card-group testcarts">
-                            <div class="container">
+                            <div class="container mediatest">
 
                                 <div class="row">
-                                    <main class="col-md-9">
+                                    <main class="col-md-9 col-sm">
                                         <div class="card">
-                                            <% if (cartItems){%>
+                                            <% if (cartItems.length > 0){%>
                                                 <% cartItems.forEach(cartItems => { %>
 
                                             <table class="table table-borderless table-shopping-cart">
@@ -42,7 +42,7 @@
                                                                 </div>
                                                             <figcaption class="info">
                                                                 <a href="#" class="title text-dark"><%=cartItems.name%></a>
-                                                                <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
+<!--                                                                <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>-->
                                                             </figcaption>
                                                         </figure>
                                                     </td>
@@ -71,7 +71,7 @@
                                                                 <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                                 <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                                 <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <input type="submit"  class="fa fa-ban fa-2x" value="&#xf05e" style="background: none;padding:0;border:none;">
+                                                                <input type="submit"  class="icon-ctrl fa fa-ban fa-2x" value="&#xf05e">
                                                             </form>
                                                         </div>
 
@@ -80,7 +80,7 @@
 
                                                     <%})%>
                                                     <%} else {%>
-                                                        <p>Your cart is super empty.</p>
+                                                        <h1>Your cart is super empty.</h1>
                                                     <%}%>
                                                 </tr>
                                                 </tbody>
@@ -88,18 +88,21 @@
 
 
                                             <div class="card-body border-top">
-                                                <a href="#" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-                                                <a href="./products-display" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+                                                <a href="#" class="btn btn-warning float-md-right main-press"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
+                                                <a href="#" class="hide-icon"><i class="fa fa-credit-card fa-2x float-sm-right"></i></a>
+
+                                                <a href="./products-display" class="btn btn-secondary main-press"><i class="fa fa-chevron-left"></i> Continue Shopping</a>
+                                                <a href="./products-display" class="hide-icon"> <i class="fa fa-shopping-cart fa-2x float-sm-left"></i></a>
                                             </div>
                                         </div> <!-- card.// -->
 
-                                        <div class="alert alert-success mt-3">
+                                        <div class="alert alert-success mt-3 hide-bar">
                                             <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
                                         </div>
 
                                     </main> <!-- col.// -->
-                                    <aside class="col-md-3">
-                                        <div class="card mb-3">
+                                    <aside class="col-md-3 scrollDown col-sm-12">
+                                        <div class="card">
                                         </div>  <!-- card .// -->
                                         <div class="card">
                                             <div class="card-body">
@@ -111,7 +114,6 @@
                                                         <%})%>
                                                         <dt>Total price:</dt>$<%=sum%>
                                                         <dd class="text-right">SGD</dd>
-
                                                 <%} else {%>
                                                         <dt>Total price:</dt> $0
                                                         <dd class="text-right">SGD</dd>
@@ -132,7 +134,6 @@
 
                 </div>
 
-            </div>
 </div>
 
 

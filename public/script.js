@@ -27,12 +27,12 @@
 // })
 
 //close window when click outside of form
-
-window.addEventListener('click', function (event) {
-    if (event.target == myModal) {
-        myModal.style.display = "none";
-    }
-})
+//
+// window.addEventListener('click', function (event) {
+//     if (event.target == myModal) {
+//         myModal.style.display = "none";
+//     }
+// })
 
 // adding info to SIGNUP
 

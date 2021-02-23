@@ -10,19 +10,15 @@
 
 <!-- CONTACT FORM -->
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
+        <div class="col-xl-6 col-lg-12 mb-3 align-self-center">
             <h1>Get in touch</h1>
             <p> We'd love to hear from you.
                 If you have any contact request, please fill in this form. Our dedicated customer care team is happy
                 to help you with any questions regarding your online
                 shopping, including assistance and order support.
             </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
             <form class="needs-validation" novalidate id="form" action="https://formspree.io/f/mjvpazna"
                   method="POST">
                 <div class="form-group">
@@ -47,7 +43,7 @@
             </div> -->
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Your message</label>
-                    <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="5"
+                    <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="8"
                               required></textarea>
                     <div class="invalid-feedback">
                         Please enter a message.
@@ -55,16 +51,19 @@
                 </div>
                 <button type="submit" value="Send" class="btn btn-warning">Submit</button>
             </form>
-        </div>
+    </div>
+    <div class="col-xl-6 col-lg-12">
+        <img class="img-fluid" src="images/portrait-lrnce.jpg" alt="">
+    </div>
+
     </div>
 
 </div>
 <br>
 
+
+
 <%- include('./partials/footer.ejs') %>
-
-
-<%- include('./partials/login-modal.ejs') %>
 
 <%- include('./partials/scripts.ejs') %>
 

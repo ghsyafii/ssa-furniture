@@ -73,32 +73,38 @@ router.post('/register', (req,res) => {
     }
 })
 
-// login handle
+// login handle - to delete
 
-router.post('/login', (req,res,next) => {
-    console.log(req.user)
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req,res,next)
-});
+// router.post('/login', (req,res,next) => {
+//     passport.authenticate('local', {
+//         successRedirect: '/',
+//         failureRedirect: '/users/login',
+//         failureFlash: true
+//     })(req,res,next)
+// });
+
+//redirect admin to create page instead of index
+
+router.post('/login',
+    passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: true }),
+    function(req, res) {
+        if (req.user.isAdmin == true){
+            res.redirect('/products/create')
+        }
+        else if (req.user) {
+            res.redirect('/')
+        }
+    });
 
 //logout handle
 
 router.get('/logout', (req,res) => {
     // req.logout();
     req.flash('success_msg', 'You are logged out');
-    console.log("Do you wanna save A SNOWMAN");
-    console.log(req.sessionID);
-    console.log("Do you wanna save A SNOWMAN, No way man it will melt");
-    console.log(req.session.inCart);
     req.session.save();
     req.session.regenerate(err => {
         res.redirect('/users/login');
     })
-
-    // res.redirect('/users/login');
 })
 
 module.exports = router;

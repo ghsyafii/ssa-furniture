@@ -16,16 +16,16 @@
                 </div>
             </div>
             <div class="col-md-6 align-self-center">
-            <h2><%=product.name%></h2>
+            <h2><%=product.name%>, $<%= product.price %></h2>
             <div class="content">
                 <p style="white-space: pre-line;"><%= product.description %></p>
-                <p style="white-space: pre-line;">$<%= product.price %></p>
+<!--                <p style="white-space: pre-line;">$<%= product.price %></p>-->
                 <form action="/cart/in-cart" method="POST">
                     <input type="hidden" name="name" value="<%=product.name%>">
                     <input type="hidden" name="_id" value="<%=product._id%>">
                     <input type="hidden" name="price" value="<%=product.price%>">
                     <input type="hidden" name="image" value="<%=product.imageURL%>">
-                    <input id="addToCart" type="submit" class="btn btn-warning" value="Add to cart">
+                    <input id="addToCart" type="submit" class="btn btn-warning btn-block" value="Add to cart">
                 </form>
             </div>
             </div>
