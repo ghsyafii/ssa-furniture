@@ -275,6 +275,11 @@ body {
     .hide-icon{
         display: block;
     }
+
+    .text-right{
+        float: left;
+    }
+
 }
 
 /*footer {*/

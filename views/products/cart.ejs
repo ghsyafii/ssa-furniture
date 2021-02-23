@@ -63,15 +63,19 @@
                                                             <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                             <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                             <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                            <input type="submit"  class="fa fa-pen-nib fa-1x" value="&#xf5ac Update" style="background: none;padding:0;border:none;">
-                                                            </form>
+                                                            <div class ="hide-icon"><input type="submit"  class="fa fa-pen-nib fa-1x hide-icon" value="&#xf5ac" style="background: none;padding:0;border:none;">
+                                                            </div>
+                                                            <div class ="main-press">
+                                                            <input type="submit"  class="fa fa-pen-nib fa-1x main-press" value="&#xf5ac Update" style="background: none;padding:0;border:none;">
+                                                            </div>
+                                                                </form>
 
                                                             <form action="/cart/remove-cart" method="POST">
                                                                 <input type="hidden" name="image" value="<%=cartItems.image%>">
                                                                 <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                                 <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                                 <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <input type="submit"  class="icon-ctrl fa fa-ban fa-2x" value="&#xf05e">
+                                                                <div class="main-press"><input type="submit"  class="icon-ctrl fa fa-ban fa-2x" value="&#xf05e"></div>
                                                             </form>
                                                         </div>
 
