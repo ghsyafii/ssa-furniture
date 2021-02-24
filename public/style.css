@@ -275,6 +275,11 @@ body {
     .hide-icon{
         display: block;
     }
+
+    .text-right-cart {
+        float: left;
+    }
+
 }
 
 /*footer {*/
