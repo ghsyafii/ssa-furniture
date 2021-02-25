@@ -1,41 +1,5 @@
 
 
-// const testjsbutton = document.querySelector('.testjs');
-//
-// testjsbutton.addEventListener('click', () => {
-//     console.log('clicked! scripts are linked!');
-// })
-
-//Login pop-up
-
-// var myModal = document.getElementById("myModal");
-// var clickLogin = document.getElementById("loginclick");
-// var span = document.getElementsByClassName("closetag")[0];
-// var userName = document.getElementById("uname");
-// var userPass = document.getElementById("upass");
-
-// clickLogin.addEventListener('click', function () {
-//     if (myModal.style.display == "none" || myModal.style.display == '') {
-//         myModal.style.display = "block";
-//     } else
-//         myModal.style.display = "none";
-// });
-
-// span.addEventListener('click', function () {
-//     if (myModal.style.display == "block")
-//         myModal.style.display = "none";
-// })
-
-//close window when click outside of form
-//
-// window.addEventListener('click', function (event) {
-//     if (event.target == myModal) {
-//         myModal.style.display = "none";
-//     }
-// })
-
-// adding info to SIGNUP
-
 var inputFirstName = document.getElementById("inputFname");
 var inputLastName = document.getElementById("inputLname");
 var inputEmail = document.getElementById("inputEmail4");
@@ -205,6 +169,33 @@ function resetLogin() {
 
 //test
 
+//quantity change
+const upQuantity = document.querySelectorAll('.up-quantity');
+const downQuantity = document.querySelectorAll('.down-quantity');
+const numberDisplay= document.querySelectorAll('.number-display');
 
+for (let i = 0; i < downQuantity.length; i++) {
+    downQuantity[i].addEventListener('click', (event) => {
+        event.preventDefault();
+        console.log("found" + numberDisplay[i].value);
+        if (numberDisplay[i].value > 0){
+            numberDisplay[i].value --;
+        }else{
+            numberDisplay[i].value;
+        }
+
+    })
+
+}
+
+for (let i = 0; i < downQuantity.length; i++) {
+    upQuantity[i].addEventListener('click', (event) => {
+        event.preventDefault();
+        console.log("found" + numberDisplay[i].value);
+        numberDisplay[i].value ++;
+
+    })
+
+}
 
 
