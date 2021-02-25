@@ -46,9 +46,11 @@
                                                             </figcaption>
                                                         </figure>
                                                     </td>
-                                                    <td>
+
                                                         <form action="/cart/out-cart" method="POST">
-                                                        <input type="text" value ="<%=cartItems.quantity%>" size="1" name="quantity">
+                                                            <td>
+                                                            <button class="icon-ctrl"><i class="fa fa-plus-circle"></i></button>
+                                                            <input type="text" value ="<%=cartItems.quantity%>" size="1" name="quantity"><button class="icon-ctrl"><i class="fa fa-minus-circle"></i></button>
 
                                                     </td>
                                                     <td>
@@ -58,15 +60,15 @@
                                                         </div> <!-- price-wrap .// -->
                                                     </td>
                                                     <td class="text-right-cart">
-                                                        <div style="display:flex;justify-content:space-around;">
+                                                        <div style="display:flex;justify-content:flex-start;">
                                                             <input type="hidden" name="image" value="<%=cartItems.image%>">
                                                             <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                             <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                             <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                            <div class ="hide-icon"><input type="submit"  class="fa fa-pen-nib fa-1x hide-icon" value="&#xf5ac" style="background: none;padding:0;border:none;">
+                                                            <div class ="hide-icon"><input type="submit"  class="fa fa-pen-nib fa-1x hide-icon" value="&#xf5ac">
                                                             </div>
                                                             <div class ="main-press">
-                                                            <input type="submit"  class="fa fa-pen-nib fa-1x main-press" value="&#xf5ac Update" style="background: none;padding:0;border:none;">
+                                                            <input type="submit"  class="fa fa-pen-nib fa-1x main-press icon-ctrl" value="&#xf5ac Update">
                                                             </div>
                                                                 </form>
 
@@ -75,7 +77,7 @@
                                                                 <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                                 <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                                 <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <div class="main-press"><input type="submit"  class="icon-ctrl fa fa-ban fa-2x" value="&#xf05e"></div>
+                                                                <div class="main-press"><input type="submit"  class="icon-ctrl fa fa-ban fa-1x" value="&#xf05e"></div>
                                                             </form>
                                                         </div>
 
@@ -92,8 +94,24 @@
 
 
                                             <div class="card-body border-top">
-                                                <a href="#" class="btn btn-warning float-md-right main-press"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-                                                <a href="#" class="hide-icon"><i class="fa fa-credit-card fa-2x float-sm-right"></i></a>
+                                                <form action="/pay" method="POST">
+                                                    <% if (cartItems){%>
+                                                        <%var sum = 0;%>
+                                                        <% cartItems.forEach(cartItems => { %>
+                                                        <%sum += cartItems.price * cartItems.quantity%>
+                                                        <%})%>
+                                                        <input type="hidden" name="name" value="<%=cartItems.name%>">
+                                                        <input type="hidden" name="price" value="<%=cartItems.price%>">
+                                                        <input type="hidden" name="quantity" value="<%=cartItems.quantity%>">
+                                                        <input type="hidden" name="totalprice" value="<%=sum%>">
+                                                        <%console.log("here lies thhe total price: " + sum)%>
+                                                    <%}%>
+
+                                                    <button type="submit" id ="paypal-button" class="btn btn-warning float-md-right main-press"> Make Purchase <i class="fa fa-chevron-right"></i></button>
+                                                </form>
+                                                    <form action="/pay" method="POST">
+                                                        <button type="submit" class="hide-icon"><i class="fa fa-credit-card fa-2x float-sm-right"></i></button>
+                                                </form>
 
                                                 <a href="./products-display" class="btn btn-secondary main-press"><i class="fa fa-chevron-left"></i> Continue Shopping</a>
                                                 <a href="./products-display" class="hide-icon"> <i class="fa fa-shopping-cart fa-2x float-sm-left"></i></a>
@@ -104,7 +122,7 @@
                                             <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
                                         </div>
 
-                                    </main> <!-- col.// -->
+                            </main>
                                     <aside class="col-md-3 scrollDown col-sm-12">
                                         <div class="card">
                                         </div>  <!-- card .// -->
