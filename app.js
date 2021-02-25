@@ -11,13 +11,18 @@ const expressLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const passport = require('passport');
 const cartController = require('./controllers/cartController');
+const paypal = require('paypal-rest-sdk');
+const http = require('http');
+const bodyParser = require('body-parser');
 
 const Product = require('./models/product');
 
 
 const PORT = process.env.PORT || 4000;
 var MongoDBStore = require('connect-mongodb-session')(session);
-const dbURI = require('./config/keys').MongoURI
+const dbURI = require('./config/keys').MongoURI;
+const client_Id = require('./config/keys').client_Id;
+const client_secret = require('./config/keys').client_secret;
 
 // const { ensureAuthenticated } = require('./config/auth');
 
@@ -26,18 +31,15 @@ const app = express();
 //Passport config
 require('./config/passport')(passport);
 
-//connect to MongoDB
-
-// const dbURI = 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority'
-// const store = new MongoDBStore({
-//     uri: 'mongodb+srv://syafii:flea311@cluster0.pqurf.mongodb.net/ssa?retryWrites=true&w=majority',
-//     collection: 'sessions'
-// });
-
 const store = new MongoDBStore({
     uri: dbURI,
     collection: 'sessions'
 });
+
+// configure paypal with the credentials you got when you created your paypal app
+//allow parsing of JSON bodies
+app.use(bodyParser.json());
+
 
 //connect mongoose
 
@@ -101,6 +103,13 @@ app.use((req,res,next) => {
 //TODO: Check if it should be false
 app.use(express.urlencoded({ extended: true }));
 
+//configure for sandbox environment
+paypal.configure({
+    'mode': 'sandbox', //sandbox or live
+    'client_id': client_Id,
+    'client_secret': client_secret
+});
+
 //routes
 
 
@@ -120,7 +129,84 @@ app.post('/cart/out-cart', cartController.RemoveFromCart);
 
 app.post('/cart/remove-cart', cartController.DeleteCart);
 
+//paypal
+
+app.post('/pay', (req, res) => {
+    const total = req.body.totalprice;
+    const cart = req.session.inCart;
+
+    const create_payment_json = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
+        },
+        "redirect_urls": {
+            "return_url": "http://localhost:3000/success",
+            "cancel_url": "http://localhost:3000/cancel"
+        },
+        "transactions": [{
+            "item_list": {
+                "items":
+                    cart.map((product) => {
+                        return {
+                            name: product.name,
+                            sku: product._id,
+                            price: product.price,
+                            currency: "SGD",
+                            quantity: product.quantity
+                        }
+                    }),
+            },
+            "amount": {
+                "currency": "SGD",
+                "total": total
+            },
+            "description": "Thank you for shopping with Us!"
+        }]
+    };
+    paypal.payment.create(create_payment_json, function (error, payment) {
+        if (error) {
+            throw error;
+        } else {
+            for(let i = 0;i < payment.links.length;i++){
+                if(payment.links[i].rel === 'approval_url'){
+                    res.redirect(payment.links[i].href);
+                }
+            }
+        }
+    });
+
+});
+
+app.get('/success', (req, res) => {
+    var paymentId = req.query.paymentId;
+    var payerId = { payer_id: req.query.PayerID };
+
+    paypal.payment.execute(paymentId, payerId, function(error, payment){
+        if(error){
+            console.error(JSON.stringify(error));
+        } else {
+            if (payment.state == 'approved'){
+                console.log('payment completed successfully');
+                    req.user.inCart =[];
+                    req.user.save();
+                    req.session.inCart = [];
+                res.render('success', {title: "Successful", isLoggedIn: req.user});
+            } else {
+                console.log('payment not successful');
+                res.redirect('/cancel')
+            }
+        }
+    });
+});
+
+
+app.get('/cancel', (req, res) => res.render('cancel', {title: "Cancelled", isLoggedIn: req.user}));
+
+
+
 //about
+
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About', isLoggedIn: req.user });
 });
