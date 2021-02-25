@@ -188,9 +188,12 @@ app.get('/success', (req, res) => {
         } else {
             if (payment.state == 'approved'){
                 console.log('payment completed successfully');
+                if(req.user){
                     req.user.inCart =[];
                     req.user.save();
+                }else{
                     req.session.inCart = [];
+                }
                 res.render('success', {title: "Successful", isLoggedIn: req.user});
             } else {
                 console.log('payment not successful');
