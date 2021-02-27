@@ -19,7 +19,6 @@ const AddToCart = (req,res)=>{
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
-                            console.log("I found it" + item.name);
                             item.quantity += 1;
                             req.session.inCart.splice(itemLocation, 1, item);
                         }
@@ -62,7 +61,6 @@ const AddToCart = (req,res)=>{
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
-                            console.log("I found it" + item.name);
                             item.quantity += 1;
                             req.session.inCart.splice(itemLocation, 1, item);
                         }
@@ -109,7 +107,6 @@ const AddToCart = (req,res)=>{
 
 
 const RemoveFromCart = (req,res)=>{
-//naming the array within session cookie as inCart and storing as accordingly
     if(req.user){
         var value = 1;
     }
@@ -138,12 +135,9 @@ const RemoveFromCart = (req,res)=>{
                             req.session.inCart.splice(itemLocation, 1, item);
                             console.log(req.session.inCart);
                         }
-                        console.log("I found it" + item.name);
-                        // res.render("products/cart", {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user});
                         res.redirect("/products/cart");
 
                     }
-
 
                 })
 
@@ -174,10 +168,7 @@ const RemoveFromCart = (req,res)=>{
                                     quantity: parseInt(req.body.quantity)
                                 }
                                 req.session.inCart.splice(itemLocation, 1, item);
-                                console.log(req.session.inCart);
                             }
-                            console.log("I found it" + item.name);
-                            // res.render("products/cart", {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user});
                             res.redirect("/products/cart");
 
                         }
@@ -194,7 +185,7 @@ const RemoveFromCart = (req,res)=>{
             break;
 
         default:
-            console.log("nothing");
+            console.log("nothing is found");
             break;
 
     }//switch ends here
@@ -220,7 +211,6 @@ const DeleteCart = (req,res)=>{
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
-                            console.log("I found it" + item.name);
                             item.quantity -= item.quantity;
                             if(item.quantity === 0){
                                 req.session.inCart.splice(itemLocation, 1);
@@ -257,7 +247,6 @@ const DeleteCart = (req,res)=>{
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
-                            console.log("I found it" + item.name);
                             item.quantity -= item.quantity;
                             if (item.quantity === 0) {
                                 req.session.inCart.splice(itemLocation, 1);
@@ -275,7 +264,6 @@ const DeleteCart = (req,res)=>{
                     console.log("error")
                 }
 
-
             }
             break;
 
@@ -288,4 +276,20 @@ const DeleteCart = (req,res)=>{
 
 }
 
-module.exports={AddToCart, RemoveFromCart, DeleteCart}
+const cartDisplay =(req,res)=>{
+    if(req.user) {
+        if(req.user.inCart.length !== 0){
+            res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})}
+        else{
+            req.user.inCart = req.session.inCart;
+            req.user.save();
+            res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
+        }
+    }
+    else{
+        res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+    }
+
+}
+
+module.exports={AddToCart, RemoveFromCart, DeleteCart, cartDisplay}

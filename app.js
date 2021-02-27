@@ -11,8 +11,8 @@ const expressLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const passport = require('passport');
 const cartController = require('./controllers/cartController');
+const paymentController = require('./controllers/paymentController');
 const paypal = require('paypal-rest-sdk');
-const http = require('http');
 const bodyParser = require('body-parser');
 
 const Product = require('./models/product');
@@ -129,84 +129,15 @@ app.post('/cart/out-cart', cartController.RemoveFromCart);
 
 app.post('/cart/remove-cart', cartController.DeleteCart);
 
-//paypal
+//paypal, payment
 
-app.post('/pay', (req, res) => {
-    const total = req.body.totalprice;
-    const cart = req.session.inCart;
+app.post('/pay', paymentController.paymentStart);
 
-    const create_payment_json = {
-        "intent": "sale",
-        "payer": {
-            "payment_method": "paypal"
-        },
-        "redirect_urls": {
-            "return_url": "http://localhost:3000/success",
-            "cancel_url": "http://localhost:3000/cancel"
-        },
-        "transactions": [{
-            "item_list": {
-                "items":
-                    cart.map((product) => {
-                        return {
-                            name: product.name,
-                            sku: product._id,
-                            price: product.price,
-                            currency: "SGD",
-                            quantity: product.quantity
-                        }
-                    }),
-            },
-            "amount": {
-                "currency": "SGD",
-                "total": total
-            },
-            "description": "Thank you for shopping with Us!"
-        }]
-    };
-    paypal.payment.create(create_payment_json, function (error, payment) {
-        if (error) {
-            throw error;
-        } else {
-            for(let i = 0;i < payment.links.length;i++){
-                if(payment.links[i].rel === 'approval_url'){
-                    res.redirect(payment.links[i].href);
-                }
-            }
-        }
-    });
+app.get('/success', paymentController.successPayment);
 
-});
-
-app.get('/success', (req, res) => {
-    var paymentId = req.query.paymentId;
-    var payerId = { payer_id: req.query.PayerID };
-
-    paypal.payment.execute(paymentId, payerId, function(error, payment){
-        if(error){
-            console.error(JSON.stringify(error));
-        } else {
-            if (payment.state == 'approved'){
-                console.log('payment completed successfully');
-                if(req.user){
-                    req.user.inCart =[];
-                    req.user.save();
-                }else{
-                    req.session.inCart = [];
-                }
-                res.render('success', {title: "Successful", isLoggedIn: req.user});
-            } else {
-                console.log('payment not successful');
-                res.redirect('/cancel')
-            }
-        }
-    });
-});
-
-
-app.get('/cancel', (req, res) => res.render('cancel', {title: "Cancelled", isLoggedIn: req.user}));
-
-
+app.get('/cancel', (req, res) =>
+    res.render('cancel', {title: "Cancelled", isLoggedIn: req.user}
+    ));
 
 //about
 

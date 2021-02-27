@@ -12,21 +12,7 @@ const cartController = require('../controllers/cartController');
 //product routes
 router.get('/products-display', productController.product_index);
 
-router.get('/cart', (req,res)=>{
-        if(req.user) {
-                if(req.user.inCart.length !== 0){
-                        res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})}
-                else{
-                        req.user.inCart = req.session.inCart;
-                        req.user.save();
-                        res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
-                }
-        }
-        else{
-                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
-        }
-
-})
+router.get('/cart', cartController.cartDisplay);
 
 router.post('/', productController.product_create_post);
 
