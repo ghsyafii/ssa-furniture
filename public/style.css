@@ -227,7 +227,6 @@ body {
 
 .icon-ctrl{
     background: none;
-
     border:none;
     color: grey;
 }
@@ -283,6 +282,18 @@ body {
     .text-right-cart {
         float: left;
     }
+
+    .post-flex{
+        display: flex;
+       float: right;
+
+    }
+    .icon-ctrl{
+        background: none;
+        border:none;
+        color: grey;
+    }
+
 
 }
 
