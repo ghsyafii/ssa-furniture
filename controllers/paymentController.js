@@ -56,7 +56,6 @@ const successPayment = (req, res) => {
             console.error(JSON.stringify(error));
         } else {
             if (payment.state == 'approved'){
-                console.log('payment completed successfully');
                 if(req.user){
                     req.user.inCart =[];
                     req.user.save();
@@ -65,7 +64,6 @@ const successPayment = (req, res) => {
                 }
                 res.redirect('/success');
             } else {
-                console.log('payment not successful');
                 res.redirect('/cancel')
             }
         }

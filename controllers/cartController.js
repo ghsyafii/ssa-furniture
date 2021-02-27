@@ -276,4 +276,20 @@ const DeleteCart = (req,res)=>{
 
 }
 
-module.exports={AddToCart, RemoveFromCart, DeleteCart}
+const cartDisplay =(req,res)=>{
+    if(req.user) {
+        if(req.user.inCart.length !== 0){
+            res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})}
+        else{
+            req.user.inCart = req.session.inCart;
+            req.user.save();
+            res.render('products/cart', {cartItems: req.user.inCart, title: "Cart", isLoggedIn: req.user})
+        }
+    }
+    else{
+        res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+    }
+
+}
+
+module.exports={AddToCart, RemoveFromCart, DeleteCart, cartDisplay}
