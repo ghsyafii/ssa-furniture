@@ -9,8 +9,9 @@ const cartItem_Schema = new Schema({
         type: String
     },
     image: {
-        type: String,
-
+        // type: String,
+        type: Buffer,
+        required: true
     },
     price: {
         type: Number,
