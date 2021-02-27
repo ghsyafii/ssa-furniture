@@ -61,7 +61,8 @@ const product_update_get = async (req,res) => {
 //POST NEW PRODUCT
 
 const product_create_post = (req,res) => {
-    const product = new Product(req.body);
+    const product = new Product(req.body)
+    saveImage(product, req.body.imageURL)
     product.save()
         .then(result => {
             res.redirect('products/create');
@@ -85,6 +86,17 @@ const product_update_put = async (req,res) => {
     const id = req.params.id;
     const product = await Product.findByIdAndUpdate(id, req.body, {runValidators: true, new: true});
     res.redirect(`/products/create`)
+}
+
+function saveImage(product, imageEncoded){
+    if (imageEncoded == null) {
+        return
+    }
+    const imageURL = JSON.parse(imageEncoded)
+    if (imageURL != null){
+        product.imageURL = new Buffer.from(imageURL.data, 'base64')
+        product.imageType = imageURL.type
+    }
 }
 
 module.exports = { product_index, product_details, product_create_get, product_create_post, product_delete, product_update_put, product_update_get }

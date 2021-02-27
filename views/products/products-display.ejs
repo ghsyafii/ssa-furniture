@@ -20,7 +20,7 @@
         <% products.forEach(product => { %>
 
         <div class="col-sm-6 col-md-3"><div class="card p-2 border border-dark mb-4">
-                <a href="/products/<%= product._id %>"><img class="card-img-top animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="<%=product.imageURL%>"></a>
+                <a href="/products/<%= product._id %>"><img class="card-img-top animate__animated animate__fadeIn" src="data:image/jpeg;charset=utf-8;base64,<%=product.imageURL.toString('base64')%>" alt="product image"></a>
                 <div class="card-body">
                     <a class="text-dark" href="/products/<%= product._id %>"><h5 class="card-title"><%=product.name%></h5>
 

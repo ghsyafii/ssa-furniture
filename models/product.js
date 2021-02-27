@@ -13,7 +13,11 @@ const productSchema = new Schema({
         required: true
     },
     imageURL: {
-        type: String,
+        type: Buffer,
+        required: true
+    },
+    imageType: {
+    type: String,
         required: true
     },
     price: {

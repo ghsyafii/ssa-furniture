@@ -101,7 +101,7 @@ app.use((req,res,next) => {
 //middleware to convert posts to right format
 
 //TODO: Check if it should be false
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ limit: '200mb', extended: true }));
 
 //configure for sandbox environment
 paypal.configure({

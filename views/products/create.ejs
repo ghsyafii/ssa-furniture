@@ -23,7 +23,8 @@
 
         <div class="form-group">
             <label for="imageURL">Image URL:</label>
-            <input type="text" id="imageURL" class="form-control" name="imageURL" required>
+<!--            <input type="text" id="imageURL" class="form-control" name="imageURL" required>-->
+            <input type="file" id="imageURL" class="filepond" name="imageURL" required>
         </div>
 
         <div class="form-group">
@@ -57,8 +58,7 @@
                         <% products.forEach(product => { %>
 
                         <div class="col-sm-3"><div class="card border border-dark p-2 mb-3">
-                                <img class="card-img-top animate__animated animate__fadeIn" src="<%=product.imageURL%>" alt="">
-                                <div class="card-body">
+                                <img class="card-img-top animate__animated animate__fadeIn" src="data:image/jpeg;charset=utf-8;base64,<%=product.imageURL.toString('base64')%>" alt="product image">                                <div class="card-body">
                                     <h5 class="card-title"><%=product.name%></h5>
                                     <p class="card-text">$<%=product.price%></p>
 
