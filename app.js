@@ -139,8 +139,6 @@ app.get('/cancel', (req, res) =>
     res.render('cancel', {title: "Cancelled", isLoggedIn: req.user}
     ));
 
-
-
 //about
 
 app.get('/about', (req, res) => {
