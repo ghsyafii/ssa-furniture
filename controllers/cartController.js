@@ -90,7 +90,6 @@ const AddToCart = (req,res)=>{
                     quantity: 1
                 }
                 req.session.inCart.push(item);
-
                 res.redirect("/products/cart");
 
             }
@@ -163,7 +162,7 @@ const RemoveFromCart = (req,res)=>{
                             else{
                                 let item = {
                                     name: req.body.name,
-                                    image: req.body.image,
+                                    image:req.body.image,
                                     price: req.body.price,
                                     quantity: parseInt(req.body.quantity)
                                 }

@@ -14,6 +14,7 @@ const cartController = require('./controllers/cartController');
 const paymentController = require('./controllers/paymentController');
 const paypal = require('paypal-rest-sdk');
 const bodyParser = require('body-parser');
+const streamBuffers = require('stream-buffers');
 
 const Product = require('./models/product');
 
