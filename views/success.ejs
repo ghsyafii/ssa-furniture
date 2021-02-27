@@ -7,8 +7,22 @@
 
 <%- include('./partials/nav.ejs') %>
 
-<p>Successful</p>
+<h1>Dear Customer,</h1>
+
+<p>Payment is successful!</p>
+
+<p>Hope you have a nice day.</p>
+
+<p>Redirecting you back to the Homepage...</p>
 
 <%- include('./partials/scripts.ejs')%>
 </body>
+
+<script>
+    setTimeout(function () {
+        // after 2 seconds
+        window.location = "/";
+    }, 3000)
+</script>
+
 </html>
