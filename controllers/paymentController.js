@@ -62,7 +62,7 @@ const successPayment = (req, res) => {
                 }else{
                     req.session.inCart = [];
                 }
-                res.redirect('http://ssa-furniture.herokuapp.com/success');
+                res.redirect('http://ssa-furniture.herokuapp.com/redirect');
             } else {
                 res.redirect('http://ssa-furniture.herokuapp.com/cancel')
             }
