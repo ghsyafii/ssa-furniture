@@ -322,3 +322,10 @@ hr {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+tr th {
+    font-family: Inter;
+    font-size: 130%;
+    color: black;
+    text-transform: capitalize;
+}

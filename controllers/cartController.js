@@ -12,10 +12,10 @@ const AddToCart = (req,res)=>{
         case 1:
             req.user.inCart = req.session.inCart;
             req.session.inCart = req.user.inCart||[];
-            console.log(req.user.inCart);
+            // console.log(req.user.inCart);
             if(Array.isArray(req.session.inCart)&& req.session.inCart.length>0) {
                 var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
-                console.log(itemLocation);
+                // console.log(itemLocation);
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
@@ -57,14 +57,14 @@ const AddToCart = (req,res)=>{
             req.session.inCart = req.session.inCart||[];
             if(Array.isArray(req.session.inCart)&& req.session.inCart.length>0) {
                 var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
-                console.log(itemLocation);
+                // console.log(itemLocation);
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
                             item.quantity += 1;
                             req.session.inCart.splice(itemLocation, 1, item);
                         }
-                        console.log(req.session.inCart);
+                        // console.log(req.session.inCart);
 
 
                     })
@@ -96,7 +96,7 @@ const AddToCart = (req,res)=>{
             break;
 
         default:
-            console.log("nothing");
+            // console.log("nothing");
             break;
 
     }//switch ends here
@@ -116,7 +116,7 @@ const RemoveFromCart = (req,res)=>{
     switch(value){
         case 1:
             req.session.inCart = req.user.inCart||[];
-            console.log(req.user.inCart);
+            // console.log(req.user.inCart);
             var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
             if (itemLocation !== -1) {
                 req.session.inCart.forEach(item => {
@@ -132,7 +132,7 @@ const RemoveFromCart = (req,res)=>{
                                 quantity: parseInt(req.body.quantity)
                             }
                             req.session.inCart.splice(itemLocation, 1, item);
-                            console.log(req.session.inCart);
+                            // console.log(req.session.inCart);
                         }
                         res.redirect("/products/cart");
 
@@ -152,7 +152,7 @@ const RemoveFromCart = (req,res)=>{
             req.session.inCart = req.session.inCart||[];
             if(Array.isArray(req.session.inCart)&& req.session.inCart.length>0) {
                 var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
-                console.log(itemLocation);
+                // console.log(itemLocation);
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
@@ -206,7 +206,7 @@ const DeleteCart = (req,res)=>{
             req.session.inCart = req.user.inCart||[];
             if(Array.isArray(req.session.inCart)&& req.session.inCart.length>0) {
                 var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
-                console.log(itemLocation);
+                // console.log(itemLocation);
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {
@@ -242,7 +242,7 @@ const DeleteCart = (req,res)=>{
             req.session.inCart = req.session.inCart||[];
             if(Array.isArray(req.session.inCart)&& req.session.inCart.length>0) {
                 var itemLocation = req.session.inCart.map(item => item.name).indexOf(req.body.name);
-                console.log(itemLocation);
+                // console.log(itemLocation);
                 if (itemLocation !== -1) {
                     req.session.inCart.forEach(item => {
                         if (req.body.name === item.name) {

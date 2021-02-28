@@ -29,6 +29,8 @@
                                                     <th scope="col">Product</th>
                                                     <th scope="col" width="120">Quantity</th>
                                                     <th scope="col" width="120">Price</th>
+<!--                                                    <th scope="col" width="120">Update</th>-->
+
                                                     <th scope="col" class="text-right-cart" width="200"> </th>
                                                 </tr>
                                                 </thead>
@@ -58,7 +60,7 @@
                                                     <td>
                                                         <div class="price-wrap">
                                                             <var class="price">$<%=cartItems.price * cartItems.quantity%></var>
-                                                            <small class="text-muted">$<%=cartItems.price%> </small>
+<!--                                                            <small class="text-muted">$<%=cartItems.price%> </small>-->
                                                         </div> <!-- price-wrap .// -->
                                                     </td>
                                                     <td class="text-right-cart">
@@ -67,11 +69,13 @@
                                                             <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                             <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                             <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                            <div class ="hide-icon"><input type="submit"  class="fa fa-pen-nib fa-1x hide-icon" value="&#xf5ac">
+<!--                                                            <div class ="hide-icon"><input type="submit"  class="fa fa-pen-nib fa-1x hide-icon" value="&#xf5ac">-->
                                                             </div>
-                                                            <div class ="main-press">
-                                                            <input type="submit"  class="fa fa-pen-nib fa-1x main-press icon-ctrl" value="&#xf5ac Update">
-                                                            </div>
+<!--                                                            <div class ="main-press">-->
+<!--                                                            <input type="submit"  class="fa fa-pen-nib fa-1x main-press icon-ctrl" value="&#xf5ac Update">-->
+                                                                <input type="submit" class="btn btn-warning mb-2" value="Update">
+
+<!--                                                            </div>-->
                                                                 </form>
 
                                                             <form action="/cart/remove-cart" method="POST">
@@ -79,7 +83,9 @@
                                                                 <input type="hidden" name="name" value="<%=cartItems.name%>">
                                                                 <input type="hidden" name="_id" value="<%=cartItems._id%>">
                                                                 <input type="hidden" name="price" value="<%=cartItems.price%>">
-                                                                <div class="main-press icon-ctrl"><input type="submit"  class="icon-ctrl fa fa-ban fa-1x" value="&#xf05e"></div>
+<!--                                                                <div class="main-press icon-ctrl"><input type="submit"  class="icon-ctrl fa fa-ban fa-1x" value="&#xf05e"></div>-->
+                                                                <div><input type="submit"  class="btn btn-danger" value="Delete"></div>
+
                                                             </form>
                                                         </div>
 
@@ -116,9 +122,9 @@
                                             </div>
                                         </div> <!-- card.// -->
 
-                                        <div class="alert alert-success mt-3 hide-bar">
-                                            <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
-                                        </div>
+<!--                                        <div class="alert alert-success mt-3 hide-bar">-->
+<!--                                            <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>-->
+<!--                                        </div>-->
 
                             </main>
                                     <aside class="col-md-3 scrollDown col-sm-12">
