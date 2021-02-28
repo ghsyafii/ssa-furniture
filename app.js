@@ -136,6 +136,10 @@ app.post('/pay', paymentController.paymentStart);
 
 app.get('/success', paymentController.successPayment);
 
+app.get('/success', (req, res) =>
+    res.render('success', {title: "Successful Payment", isLoggedIn: req.user}
+    ));
+
 app.get('/redirect', (req, res) =>
     res.render('redirect', {title: "Successful Payment", isLoggedIn: req.user}
     ));
@@ -144,9 +148,7 @@ app.get('/cancel', (req, res) =>
     res.render('cancel', {title: "Cancelled", isLoggedIn: req.user}
     ));
 
-app.get('/success', (req, res) =>
-    res.render('success', {title: "Successful Payment", isLoggedIn: req.user}
-    ));
+
 
 //about
 
