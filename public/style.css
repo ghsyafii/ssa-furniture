@@ -329,3 +329,7 @@ tr th {
     color: black;
     text-transform: capitalize;
 }
+
+.width {
+    width: 80px;
+}
