@@ -144,6 +144,10 @@ app.get('/cancel', (req, res) =>
     res.render('cancel', {title: "Cancelled", isLoggedIn: req.user}
     ));
 
+app.get('/success', (req, res) =>
+    res.render('success', {title: "Successful Payment", isLoggedIn: req.user}
+    ));
+
 //about
 
 app.get('/about', (req, res) => {
