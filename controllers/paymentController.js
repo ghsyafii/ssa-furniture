@@ -10,7 +10,7 @@ const paymentStart = (req, res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://ssa-furniture.herokuapp.com/success",
+            "return_url": "http://ssa-furniture.herokuapp.com/redirect",
             "cancel_url": "http://ssa-furniture.herokuapp.com/cancel"
         },
         "transactions": [{
@@ -59,10 +59,12 @@ const successPayment = (req, res) => {
                 if(req.user){
                     req.user.inCart =[];
                     req.user.save();
+                    res.redirect('http://ssa-furniture.herokuapp.com/success');
                 }else{
                     req.session.inCart = [];
+                    res.redirect('http://ssa-furniture.herokuapp.com/success');
                 }
-                res.redirect('http://ssa-furniture.herokuapp.com/success');
+
             } else {
                 res.redirect('http://ssa-furniture.herokuapp.com/cancel')
             }
