@@ -134,11 +134,11 @@ app.post('/cart/remove-cart', cartController.DeleteCart);
 
 app.post('/pay', paymentController.paymentStart);
 
-app.get('/redirect', paymentController.successPayment);
+app.get('/success', paymentController.successPayment);
 
-app.get('/success', (req, res) =>
-    res.render('success', {title: "Successful Payment", isLoggedIn: req.user}
-    ));
+// app.get('/success', (req, res) =>
+//     res.render('success', {title: "Successful Payment", isLoggedIn: req.user}
+//     ));
 
 app.get('/redirect', (req, res) =>
     res.render('redirect', {title: "Successful Payment", isLoggedIn: req.user}
