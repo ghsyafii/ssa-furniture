@@ -56,7 +56,13 @@ const successPayment = (req, res) => {
             console.error(JSON.stringify(error));
         } else {
             if (payment.state == 'approved'){
-                res.redirect('http://ssa-furniture.herokuapp.com/success/');
+                if(req.user){
+                    req.user.inCart =[];
+                    req.user.save();
+                }else{
+                    req.session.inCart = [];
+                }
+                res.render('success', {title: "Successful Payment"});
             } else {
                 res.redirect('http://ssa-furniture.herokuapp.com/cancel')
             }
