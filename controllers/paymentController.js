@@ -10,7 +10,7 @@ const paymentStart = (req, res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://ssa-furniture.herokuapp.com/success",
+            "return_url": "http://ssa-furniture.herokuapp.com/redirect",
             "cancel_url": "http://ssa-furniture.herokuapp.com/cancel"
         },
         "transactions": [{
