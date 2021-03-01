@@ -40,7 +40,7 @@
 
                                                             <figure class="itemside">
                                                                 <div class="aside">
-                                                                    <img src="data:image/jpeg;charset=utf-8;base64,<%=cartItems.image.toString('base64')%>" class="img-sm img-fluid" style="height:auto; width: 50%;" alt="product">
+                                                                    <img src="data:image/jpeg;charset=utf-8;base64,<%=cartItems.image.toString('base64')%>" class="img-sm" style="height:auto; width: 50%;" alt="product">
 
                                                                 </div>
                                                             <figcaption class="info">
@@ -52,9 +52,10 @@
 
                                                         <form action="/cart/out-cart" method="POST">
                                                             <td>
+                                                                <div class="flex-button">
                                                                 <button class="main-press icon-ctrl down-quantity"><i class="fa fa-minus-circle"></i></button>
-                                                            <input class="number-display" type="text" value ="<%=cartItems.quantity%>" size="1" name="quantity"><button class="main-press icon-ctrl up-quantity"><i class="fa fa-plus-circle"></i></button>
-
+                                                            <input class="number-display" type="text" value ="<%=cartItems.quantity%>" size="1" name="quantity" style="width: 30px;"><button class="main-press icon-ctrl up-quantity"><i class="fa fa-plus-circle"></i></button>
+                                                                </div>
 
                                                     </td>
                                                     <td>
