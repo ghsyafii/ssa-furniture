@@ -20,6 +20,9 @@ body {
     margin-left: 20px;
     padding-top: 80px;
     background-color: #FDFBF4 !important;
+    position: relative;
+    min-height: 100vh;
+
 }
 
 .btn {
@@ -250,7 +253,7 @@ body {
     float: right;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 700px) {
     .mediatest {
         display: flex;
         flex-direction: column;
@@ -297,23 +300,17 @@ body {
 
 }
 
-/*footer {*/
-/*    position: fixed;*/
-/*    height: 100px;*/
-/*    bottom: 0;*/
-/*    width: 100%;*/
-/*}*/
+
 
 hr {
     border: 0.03em solid black;
 }
 
-/*.footer {*/
-/*    position: relative;*/
-/*    bottom: 0;*/
+/*.footer{*/
+/*    position: absolute;*/
+/*    bottom:0;*/
 /*    width: 100%;*/
-
-
+/*    height: 2.5rem;*/
 /*}*/
 
 .centered {
@@ -321,4 +318,15 @@ hr {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+tr th {
+    font-family: Inter;
+    font-size: 130%;
+    color: black;
+    text-transform: capitalize;
+}
+
+.width {
+    width: 80px;
 }

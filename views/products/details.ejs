@@ -14,7 +14,7 @@
                 <div class="card p-2 border border-dark">
                     <img class="card-img-top animate__animated animate__fadeIn" src="data:image/jpeg;charset=utf-8;base64,<%=product.imageURL.toString('base64')%>" alt="product image">                </div>
             </div>
-            <div class="col-md-6 align-self-center">
+            <div class="col-md-6 align-self-center pt-2">
             <h2><%=product.name%>, $<%= product.price %></h2>
             <div class="content">
                 <p style="white-space: pre-line;"><%= product.description %></p>
@@ -24,7 +24,7 @@
                     <input type="hidden" name="_id" value="<%=product._id%>">
                     <input type="hidden" name="price" value="<%=product.price%>">
                     <input type="hidden" name="image" value="<%=product.imageURL.toString('base64')%>">
-                    <input id="addToCart" type="submit" class="btn btn-warning btn-block" value="Add to cart">
+                    <input id="addToCart" type="submit" class="btn btn-outline-dark btn-block" value="Add to cart">
                 </form>
             </div>
             </div>

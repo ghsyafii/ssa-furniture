@@ -7,14 +7,12 @@ const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
 const methodOverride = require('method-override');
 const session = require('express-session');
-const expressLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const passport = require('passport');
 const cartController = require('./controllers/cartController');
 const paymentController = require('./controllers/paymentController');
 const paypal = require('paypal-rest-sdk');
 const bodyParser = require('body-parser');
-const streamBuffers = require('stream-buffers');
 
 const Product = require('./models/product');
 
