@@ -101,8 +101,9 @@
                                                 </tbody>
                                             </table>
 
+<!--                                        <hr>-->
 
-                                            <div class="card-body">
+                                            <div class="card-body border border-dark rounded">
                                                 <form action="/pay" method="POST">
                                                     <% if (cartItems){%>
                                                         <%var sum = 0;%>
@@ -115,7 +116,7 @@
                                                         <input type="hidden" name="totalprice" value="<%=sum%>">
                                                     <%}%>
 
-                                                    <button type="submit" id ="paypal-button" class="btn btn-success float-md-right main-press"> Make Purchase <i class="fa fa-chevron-right"></i></button>
+                                                    <button type="submit" id ="paypal-button" class="btn btn-success float-md-right main-press"> Checkout <i class="fa fa-chevron-right"></i></button>
                                                 </form>
 
                                                 <a href="./products-display" class="main-press btn btn-outline-dark"><i class="fa fa-chevron-left"></i> Continue Shopping</a>
