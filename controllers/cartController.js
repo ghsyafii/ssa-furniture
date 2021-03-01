@@ -24,7 +24,7 @@ const AddToCart = (req,res)=>{
                         }
 
                     })
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                    res.redirect("/products/cart");
                 } else{
                     let item2 = {
                         name: req.body.name,
@@ -33,7 +33,7 @@ const AddToCart = (req,res)=>{
                         quantity: 1
                     }
                     req.session.inCart.push(item2);
-                    res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                    res.redirect("/products/cart");
                 }
 
 
@@ -45,7 +45,7 @@ const AddToCart = (req,res)=>{
                     quantity: 1
                 }
                 req.session.inCart.push(item);
-                res.render('products/cart', {cartItems: req.session.inCart, title: "Cart", isLoggedIn: req.user})
+                res.redirect("/products/cart");
             }
 
             req.user.inCart = req.session.inCart;
