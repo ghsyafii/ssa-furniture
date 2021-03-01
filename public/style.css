@@ -244,12 +244,6 @@ body {
     color: #FFA07A;
 }
 
-.flex-button{
-    display: flex;
-    justify-content: center;
-
-}
-
 .display-4{
     display: flex;
     justify-content: flex-end;
