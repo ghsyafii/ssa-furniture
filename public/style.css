@@ -3,6 +3,7 @@
     src: url(/fonts/WremenaBold/WremenaBold.woff) format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap
 }
 
 body {
